@@ -7,7 +7,7 @@ export const InputSearch = ({ size, type, eventHandler, text, icon }: InputSearc
   return (
     <div className={`${styles[size]} ${styles.borders}`} >
       <Icon color='var(--gray500)' iconName={icon} size='1.6rem' />
-      <input className={`${styles.contenido}`} type={type} onChange={eventHandler} placeholder={text} />
+      <input  className={`${styles.contenido}`} type='text' onChange={eventHandler} placeholder={text} />
     </div>
   )
 }

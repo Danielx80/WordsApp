@@ -4,12 +4,11 @@ import BasicBtn from '../../Button/BasicButton/BasicButton';
 
 
 interface ModalDeleteProps {
-	title: string,
-	body: string,
-	text: string,
+	title?: string,
+	body?: string,
 }
 
-export const ModalDelete = ({ title, body, text }: ModalDeleteProps) => {
+export const ModalDelete = ({ title, body }: ModalDeleteProps) => {
 	return (
 		<div className={styles.content}>
 			<div className={styles.border}>

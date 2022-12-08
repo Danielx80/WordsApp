@@ -4,11 +4,17 @@ import { ModalEditProps } from "./interface";
 import Avatar from "../../Avatar";
 import BasicBtn from "../../Button/BasicButton/BasicButton";
 import InputModal from '../../InputsModal/Inputs';
+import { useContext } from 'react';
+import { ModalContext } from '../index';
 
 const ModalEditUser = ({ size, backgroundColor, textHeader }: ModalEditProps) => {
+
+  const { setIsOpenModal } = useContext(ModalContext)
+
   return (
+
     <div
-      className={`${styles[size]} ${backgroundColor} ${styles.modalContainer}`}
+      className={`${styles[size]} ${styles.modalContainer}`} style={{ backgroundColor: backgroundColor }}
     >
       <div className={styles.containerHeader}>
         <div className={styles.containerTitle}>
@@ -19,8 +25,8 @@ const ModalEditUser = ({ size, backgroundColor, textHeader }: ModalEditProps) =>
         </div>
       </div>
       <div className={styles.rayitaModal}></div>
-      <div className={styles.typeUser}>
-        <div className={styles.textTypeUser}>
+      <div className={styles.textTypeUser}>
+        <div className={styles.typeUser}>
           What type of user do you want to create?
         </div>
       </div>
@@ -104,6 +110,7 @@ const ModalEditUser = ({ size, backgroundColor, textHeader }: ModalEditProps) =>
 
       <div className={styles.buttonFooter}>
         <BasicBtn
+          onClick={() => setIsOpenModal(false)}
           size="sm"
           backgroundColor="white"
           fontWeight={700}

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import RectangleImg from "../components/Images/RectangleImg";
 import "../assets/css/home.css";
@@ -9,14 +10,22 @@ import Infoframe from "../components/Infoframe";
 import CardUser from "../components/CardUsers/CardUsers";
 import PaginationHome from "../components/PaginationHome/PaginationHome";
 import OptionsHome from '../components/PaginationHome/OptionsHome';
+import Modal from "../components/Modal";
+import ModalEditUser from '../components/Modal/ModalEditUser/ModalEditUser';
+
 
 export const HomePage = () => {
   const { isLoading, user } = useAuth0();
 
   if (isLoading) return <h1>Loading...</h1>;
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  useEffect(() => {
+    console.log(isOpenModal)
+  }, [isOpenModal])
 
   return (
-    <div style={{ backgroundColor: "#F8FAFC" }}>
+
+    <> <div style={{ backgroundColor: "#F8FAFC" }}>
       <div className="container">
         <div className="containerHeader">
           <RectangleImg />
@@ -25,10 +34,11 @@ export const HomePage = () => {
           <div className="containerNameButtton">
             <H2 variant="bold">Diego Antonio Juarez</H2>
             <ButtonEdit
-              onClick={console.log}
+              onClick={() => { setIsOpenModal(true) }}
               size="md"
               text="Edit User"
               backgroundColor="var(--celeste600)"
+
             />
           </div>
         </div>
@@ -141,5 +151,13 @@ export const HomePage = () => {
         </div>
       </div>
     </div>
+      <Modal callback={(Open) => setIsOpenModal(Open)} isOpen={isOpenModal}>
+        <ModalEditUser
+          backgroundColor='white'
+          size='md'
+          textHeader='Edit User'
+        />
+      </Modal>
+    </>
   );
 };

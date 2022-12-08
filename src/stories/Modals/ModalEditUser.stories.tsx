@@ -17,6 +17,6 @@ const Template: ComponentStory<typeof ModalEditUser> = (args) => {
 export const ModalEditUserComponent = Template.bind({})
 ModalEditUserComponent.args = {
 	size: 'md',
-	backgroundColor: 'var(--gray600)',
+	backgroundColor: 'var(--white)',
 	textHeader: 'Edit User'
 }
