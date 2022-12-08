@@ -1,0 +1,44 @@
+.containerUser {
+  max-width: 111.6rem;
+  padding: 3.6rem;
+  margin: 0 auto;
+}
+.containerHeaderUsers {
+  max-width: 111.6rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+.titleUsers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem;
+  gap: 50%;
+  margin-bottom: 1.6rem;
+}
+.space-text {
+  position: absolute;
+  width: 72.6%;
+  height: 0.1rem;
+  background: var(--gray300);
+}
+.containerSearch {
+  margin-top: 3.3rem;
+  display: flex;
+  flex-direction: row;
+  padding: 0rem;
+  justify-content: space-between;
+}
+.roundsButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.containerTable {
+  max-width: 111.6rem;
+  margin: 0 auto;
+  margin-top: 2.4rem;
+}

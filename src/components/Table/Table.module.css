@@ -1,0 +1,112 @@
+.footerContainer {
+    display: flex;
+    background: #ffffff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.2rem 2.4rem;
+    filter: drop-shadow(0rem 0rem 0.125rem rgba(0, 0, 0, 0.1)) drop-shadow(0rem 0.25rem 0.375rem rgba(0, 0, 0, 0.1));
+    border-radius: 0px 0px 5px 5px;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    -moz-border-radius: 0px 0px 5px 5px;
+    -ms-border-radius: 0px 0px 5px 5px;
+    -o-border-radius: 0px 0px 5px 5px;
+  }
+  
+  .spaceHeader {
+    align-items: center;
+    padding: 1.6rem;
+    border-bottom: 1px solid #E5E5E5;
+  }
+  
+  .input {
+    margin-left: 1.8rem;
+    margin-right: 1.8rem;
+  }
+  
+  .selectContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .styleheader {
+    width: 44px;
+    height: 16px;
+    font-family: var(--fontA);
+    font-style: normal;
+    font-weight: 900;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    text-transform: uppercase;
+    color: var(--gray700);
+  }
+  
+  .styleBody {
+    font-family: var(--fontA);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 150%;
+    margin-top: 2.4rem;
+    margin-bottom: 2.4rem;
+    color: var(--neutral800);
+    padding-left: 15px;
+  }
+  
+  .rowBody {
+    height: 7rem;
+  }
+  
+  tr:hover {
+    background: #F9FAFB;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  }
+  
+  .tableColor {
+    padding: 0rem;
+    background: #ffffff;
+    border-radius: 4px 4px 0px 0px;
+    margin-top: 24px;
+    filter: drop-shadow(0rem 0rem 0.125rem rgba(0, 0, 0, 0.1)) drop-shadow(0rem 0.25rem 0.375rem rgba(0, 0, 0, 0.1));
+    border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    -ms-border-radius: 5px 5px 0px 0px;
+    -o-border-radius: 5px 5px 0px 0px;
+  }
+  
+  td {
+    margin: 0;
+    border: none;
+  }
+  
+  .contentBody {
+    margin-left: 30px;
+  }
+  
+  .numFooter {
+    padding: 7px;
+    gap: 6px;
+    width: 51px;
+    height: 36px;
+    background: #FDFDFE;
+    border: 1px solid #D4D4D4;
+    border-radius: 4px;
+    font-family: var(--fontA);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #262626;
+  }
+  
+  .containerAvatar{
+    padding-left: 20px;
+  }
+  .footerShowing{
+    position: absolute;
+  left: calc(50% - 140px/2 + 0.5px);
+  }
