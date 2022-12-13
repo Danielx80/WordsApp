@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Modal from '../../components/Modal/index';
 import ModalEditUser from '../../components/Modal/ModalEditUser/ModalEditUser';
-import ModalDelete from '../../components/Modal/ModalDelete/ModalDelete';
 
 export default {
 	title: 'modal',
@@ -21,8 +20,10 @@ const Template: ComponentStory<typeof Modal> = (args) => {
 
 export const ModalComponent = Template.bind({})
 ModalComponent.args = {
-	children: <ModalEditUser
-		backgroundColor='white'
-	/>,
+	children:
+		<ModalEditUser
+			size='md'
+			textHeader='Edit User'
+		/>,
 	isOpen: true,
 }

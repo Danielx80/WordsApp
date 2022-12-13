@@ -16,10 +16,10 @@ const Template:ComponentStory<typeof CardUsers> = (args) => {
 
 export const CardUsersComponent = Template.bind({})
 CardUsersComponent.args={
-    
     name:'Isaura Romero',
     email:'isa.romero@company.mx',
     phone:'+52 442 172 3740',
-    country:'Mexico City (GMT-5)'
+    country:'Mexico City (GMT-5)',
+    // checked: true
 
 }

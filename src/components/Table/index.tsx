@@ -8,10 +8,9 @@ import Th from './Th'
 import Thead from './Thead'
 import { Tr } from './Tr'
 import TFooter from './TFooter'
-import useTable from './hooks/useTable'
 import { User } from './interface'
 import styles from './Table.module.css'
-
+import useTable from './hooks/useTable';
 
 const Table = ({data, isLoading}:{data:User[], isLoading?:boolean}) => {
     
@@ -57,9 +56,9 @@ const Table = ({data, isLoading}:{data:User[], isLoading?:boolean}) => {
                 <Tr>
                     {
                         columns.map(column=>(
-                        <Th style={{width:column.width}} key={v4()}>
+                        <Th style={{width:column.width,  margin:'0', border:'none',boxSizing:'border-box'}} key={v4()}>
                             {
-                            column.headerName!=='check'?<p className={styles.styleheader}>{column.headerName}</p>:<input type='checkbox' checked={checkAll} onChange={handleCheckHeader}/>
+                            column.headerName!=='check'?<p className={styles.styleheader}>{column.headerName}</p>:<input className={styles.inputHeader} type='checkbox' checked={checkAll} onChange={handleCheckHeader}/>
                         }
                         </Th>
                         ))
@@ -73,7 +72,7 @@ const Table = ({data, isLoading}:{data:User[], isLoading?:boolean}) => {
                     <Tr key={v4()}>
                         {
                             columns.map((row, i)=>(
-                                <Td key={v4()} style={{width:row.width}}>
+                                <Td key={v4()} style={{width:row.width, margin:'0', padding:0, border:'none',boxSizing:'border-box'}}>
                                     {
                                         row.headerName!=='check'&&row.renderCell? row.renderCell(item, handleActions):
                                         row.renderCell&&row.renderCell({...item, check:checkAll}, handleCheck)

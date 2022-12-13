@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+
 import { HomeCardsProps } from "./interface";
 import styles from "./HomeCards.module.css";
 import Avatar from "../Avatar";
@@ -18,6 +18,7 @@ const HomeCard = ({ header, body }: HomeCardsProps) => {
           <p className={styles.textBody}>{body}</p>
         </div>
         
+         
 
         <div className={styles.containerFooter}>
           <Avatar

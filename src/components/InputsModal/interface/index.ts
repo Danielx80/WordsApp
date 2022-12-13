@@ -1,4 +1,4 @@
-export interface InputsModals {
+export interface InputsModalsProps {
 	textTitle: string,
 	size: 'sm' | 'md' | 'lg' | 'xl',
 	type: 'text' | 'number' | 'time' | 'date'

@@ -1,8 +1,8 @@
-import { MouseEvent, MouseEventHandler } from "react";
+import { MouseEvent, MouseEventHandler, ReactElement } from "react";
 
 export interface ModalEditProps {
-    size:'sm'|'md'|'lg'|'xl',
-    backgroundColor?:string,
+    size:'sm'|'md'|'xl',
     textHeader?:string,
-    onClick?:MouseEventHandler<HTMLButtonElement>,
+    onClick?:MouseEventHandler<HTMLButtonElement>
+    
 }

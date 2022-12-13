@@ -17,9 +17,9 @@
   gap: 50%;
   margin-bottom: 1.6rem;
 }
-.space-text {
-  position: absolute;
-  width: 72.6%;
+.spaceText {
+  position: relative;
+  width: 95%;
   height: 0.1rem;
   background: var(--gray300);
 }
@@ -41,4 +41,21 @@
   max-width: 111.6rem;
   margin: 0 auto;
   margin-top: 2.4rem;
+}
+.containerCard {
+  margin-top: 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.6rem;
+  
+  
+}
+
+.floatingBtn {
+	position: fixed;
+	bottom: 4rem;
+	left: 2rem;
+	transition: all 300ms ease 0ms;
+	box-shadow: 0rem 0.8rem 1.5rem rgba(0, 0, 0, 0.1);
+	z-index: 99;
 }

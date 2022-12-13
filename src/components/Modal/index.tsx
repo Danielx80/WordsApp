@@ -1,6 +1,7 @@
+import React from 'react'
 import styles from './Modal.module.css'
-import { ModalProps } from './interface/index';
 import { useState, useEffect, createContext } from 'react';
+import { ModalProps } from './interface';
 
 interface ModalContextProps {
 	setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -11,7 +12,7 @@ const { Provider } = ModalContext
 
 export const Modal = ({ children, isOpen, callback }: ModalProps) => {
 
-	const [isOpenModal, setIsOpenModal] = useState(false)
+	const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
 
 	const handleClick = (e: MouseEvent) => {
 

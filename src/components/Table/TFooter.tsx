@@ -1,9 +1,10 @@
+import { CaretLeft, CaretRight } from 'phosphor-react'
 import { useEffect } from 'react'
 import { TableFooterProps } from './interface'
 
 import styles from './Table.module.css'
 
-const TFooter = <T extends object>({ range, setPage, page, slice, callBack, data }: TableFooterProps<T>) => {
+const TFooter =  <T extends object>({ range, setPage, page, slice, callBack, data }:TableFooterProps<T>) => {
 
     useEffect(() => {
         if (slice.length < 1 && page !== 1) {
@@ -16,42 +17,42 @@ const TFooter = <T extends object>({ range, setPage, page, slice, callBack, data
             <div
                 className={styles.selectContainer}
             >
-                <p>Rows per page</p>
-                <select onChange={(e) => callBack(Number(e.target.value))} className={styles.numFooter}>
-                    <option>
-                        1
-                    </option>
-                    <option>
-                        3
-                    </option>
+                <p className={styles.textRowsPage}>Rows per page</p>
+                <select onChange={(e)=>callBack(Number(e.target.value))} className={styles.numFooter}>
                     <option>
                         5
                     </option>
                     <option>
-                        10
+                        10 
                     </option>
                     <option>
                         15
                     </option>
-                    <option>
-                        20
-                    </option>
+                  
                 </select>
             </div>
             <div className={styles.footerShowing}>
-                <p>{`Showing ${slice.length} of ${data.length} Results`}</p>
+                <p className={styles.textShowing}>{`Showing ${slice.length} of ${data.length} Results`}</p>
             </div>
-            <div>
+            <div className={styles.stylePagination}>
+                <div onClick={()=>setPage(page>1?(page-1):page)}>
+                    <CaretLeft size={16} style={{color:'#E5E5E5'}}/>
+                </div>
                 {
-                    range.map((el, index) => (
-                        <button
+                    range.map((el, index)=>(
+                        <div
+                        className={styles.numberPagination}
+                        style={{background: el===page ? '#F5F5F5':'transparent'}}
                             key={index}
-                            onClick={() => setPage(el)}
+                            onClick={()=>setPage(el)}
                         >
                             {el}
-                        </button>
+                        </div>
                     ))
                 }
+                <div onClick={()=>setPage(page<range.length?(page+1):page)}>
+                    <CaretRight size={16} style={{color:'#A3A3A3'}}/>
+                </div>
             </div>
         </div>
     )

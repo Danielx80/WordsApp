@@ -1,9 +1,12 @@
-import Avatar from "../../Avatar";
-import AvatarUsers from "../AvatarUsers/AvatarUsers";
+
+
 import { ColumnsProps } from "../interface";
+
 import styles from '../Table.module.css'
+import AvatarUsers from '../AvatarUsers/AvatarUsers';
 import TimeZone from '../TimeZone/TimeZone';
 import { RoundBtn } from '../../Button/RoundButton/RoundButton';
+
 export const columns:ColumnsProps[] = [
     {
         field:'check',
@@ -26,32 +29,32 @@ export const columns:ColumnsProps[] = [
     {
         field:'phone',
         headerName:'Phone',
-        width:'20%',
+        width:'19%',
         renderCell: (params, action)=><p className={styles.styleBody}>{params.phone}</p>
     },
     {
         field:'birthday',
         headerName:'Birthday',
-        width:'12%',
+        width:'13%',
         renderCell: (params, action)=><p className={styles.styleBody}>{params.birthday}</p>
     },
     {
         field:'language',
         headerName:'Language',
-        width:'15%',
+        width:'14%',
         renderCell: (params, action)=><p className={styles.styleBody}>{params.language}</p>
     },
     {
         field:'Timezone',
         headerName:'Timezone',
-        width:'20%',
+        width:'23%',
         renderCell: (params, action)=><div className={styles.styleBody}><TimeZone size="md" time={params.time} zone={params.zone}/></div>
     }
     ,
     {
         field:'actions',
         headerName:'',
-        width:'20%',
+        width:'3%',
         renderCell: (params, action)=><div className={styles.containerAvatar}><RoundBtn iconName='DotsThree'/></div>
     }
 ]
