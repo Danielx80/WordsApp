@@ -20,15 +20,19 @@ export const ToggleButton = ({values, onChange }: ToggleButtonProps) => {
       <div className={styles.containerTwo}>
         <Body2
           variant='bold'
-          color={isActive ? 'var(--neutral900)' :  'var(--neutral500)' }>
+          color={isActive ? 'var(--neutral900)' :  'var(--neutral500)'}
+          size={1.4}
+          >
           {values[0]}
+          
         </Body2>
       </div>
 
       <div className={styles.containerTwo}>
         <Body2
           variant='bold'
-          color={!isActive ? 'var(--neutral900)' :  'var(--neutral500)' }>
+          color={!isActive ? 'var(--neutral900)' :  'var(--neutral500)' }
+          size={1.4}>
           {values[1]}
         </Body2>
       </div>
@@ -44,5 +48,4 @@ export default ToggleButton
 // 	values:[
 //     'Admin','Editor'
 //    ]
-   
 // }

@@ -22,7 +22,7 @@ export const UsersPage = () => {
   const { isReady } = useContext(Context);
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [show, setShow] = useState(true);
-  const [checkAll, setCheckAll] = useState(true)
+  const [checkAll, setCheckAll] = useState(false)
 
   useEffect(() => {
     // if

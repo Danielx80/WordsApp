@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   padding: 0rem 1rem 0rem 0rem;
-
+  cursor: pointer;
   width: 11.3rem;
   height: 3.2rem;
   right: 8.3rem;
@@ -14,6 +14,7 @@
 
 .textLanguage {
   gap: 10px;
+  cursor: pointer;
   font-family: var(--fontA);
   font-style: normal;
   font-weight: 700;

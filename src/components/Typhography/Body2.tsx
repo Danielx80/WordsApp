@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react'
 
 interface Body2Props {
-    children:ReactNode, 
-    variant:'light'|'regular'|'medium'|'bold'|'black',
-    color: string
+    children: ReactNode, 
+    variant: 'light'|'regular'|'medium'|'bold'|'black',
+    color: string,
+    size: 1.4
 }
 
 const weights = {
@@ -14,10 +15,14 @@ const weights = {
     black:900
 }
 
+// const sizes = {
+//     first: 14,
+//     second: 16
+// }
 
-const Body2 = ({children, variant, color}:Body2Props) => {
+const Body2 = ({children, variant, color, size}:Body2Props) => {
     return (
-        <p style={{fontWeight:weights[variant], color: color}}>{children}</p>
+        <p style={{fontWeight: weights[variant], color: color, fontSize: `${size}rem`}}>{children} </p>
     )
 }
 

@@ -8,6 +8,7 @@
     background-color: var(--gray100);
     position: relative;
     border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 .containerTwo {
