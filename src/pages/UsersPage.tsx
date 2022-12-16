@@ -13,11 +13,12 @@ import { RoundBtn } from '../components/Button/RoundButton/RoundButton';
 import CardsTable from '../components/CardUserTable/CardTable';
 import ModalNewUser from '../components/Modal/ModalNewUsers/ModalNewUsers';
 import { CreateMessage } from '../components/Message/MessageNewUser/index';
+import { getUsersData } from '../hooks/useUsers';
 
 export const UsersPage = () => {
  
 
-  /*  const { data, isLoading, error, isError, isFetching, } = useQuery('useUsers', getUsers) */
+  const { data, isLoading, error, isError, isFetching, } = getUsersData()
   const { isAuthenticated } = useAuth0();
   const { isReady } = useContext(Context);
   const [isOpenModal, setIsOpenModal] = useState(false)
@@ -25,18 +26,13 @@ export const UsersPage = () => {
   const [checkAll, setCheckAll] = useState(false)
 
   useEffect(() => {
-    // if
-    isAuthenticated;
-  }, [isAuthenticated, isReady]);
-  
-  useEffect(() => {
     console.log(isOpenModal)
   }, [isOpenModal])
   
-  if (!isReady) {
+  if (!isReady || isLoading || isFetching ) {
     return <></>;
   }
-
+console.log(data)
 
   return (
     <>
@@ -83,7 +79,8 @@ export const UsersPage = () => {
         {
           show ?
             <div className={styles.containerTable}>
-              <Table data={dataColumns} />
+              <Table data={data.data} />
+              {/* <Table data={dataColumns} /> */}
             </div>
             :
             <div className={styles.containerCard}>

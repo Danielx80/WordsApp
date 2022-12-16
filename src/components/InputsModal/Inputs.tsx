@@ -1,12 +1,12 @@
 import { InputsModalsProps } from './interface/index';
 import styles from './Inputs.module.css'
 
-export const InputModal = ({textTitle, size, type, eventHandler, onChange, text }: InputsModalsProps) => {
+export const InputModal = ({ textTitle, size, type, eventHandler, onChange, text, name, value }: InputsModalsProps) => {
 	return (
 		<div>
 			<p className={`${styles.textTitle}`}>{textTitle}</p>
 			<div className={`${styles[size]} ${styles.borders}`}>
-				<input className={`${styles.contenido}`} type={type} onChange={eventHandler} placeholder={text} />
+				<input className={`${styles.contenido}`} type={type} value={value} name={name} onChange={onChange} placeholder={text} />
 			</div>
 		</div>
 

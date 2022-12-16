@@ -41,9 +41,9 @@ const Table = ({data, isLoading}:{data:User[], isLoading?:boolean}) => {
     }
 
 
-    useEffect(() => {
-        if(data!==undefined&&data!==null)setIsLoading(false)
-    }, [data])
+    // useEffect(() => {
+    //     if(data!==undefined&&data!==null)setIsLoading(false)
+    // }, [data])
 
     /* useEffect(() => {
         console.log(slice);

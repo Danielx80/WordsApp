@@ -20,9 +20,9 @@ export const columns:ColumnsProps[] = [
         width:'25%',
         renderCell: (params, action)=>
         <div className={styles.containerAvatar}>
-            <AvatarUsers size='md' text={params.name}
+            <AvatarUsers size='md' text={params.first_name}
                 backgroundColor='var(--teal500)'
-                createBy={`${params.name} ${params.lastname}`}
+                createBy={`${params.first_name} ${params.last_name}`}
                 emailUser={params.email} />
         </div>
     },
@@ -30,13 +30,13 @@ export const columns:ColumnsProps[] = [
         field:'phone',
         headerName:'Phone',
         width:'19%',
-        renderCell: (params, action)=><p className={styles.styleBody}>{params.phone}</p>
+        renderCell: (params, action)=><p className={styles.styleBody}>{params.telephone}</p>
     },
     {
         field:'birthday',
         headerName:'Birthday',
         width:'13%',
-        renderCell: (params, action)=><p className={styles.styleBody}>{params.birthday}</p>
+        renderCell: (params, action)=><p className={styles.styleBody}>{params.date_of_birth}</p>
     },
     {
         field:'language',
@@ -48,7 +48,7 @@ export const columns:ColumnsProps[] = [
         field:'Timezone',
         headerName:'Timezone',
         width:'23%',
-        renderCell: (params, action)=><div className={styles.styleBody}><TimeZone size="md" time={params.time} zone={params.zone}/></div>
+        renderCell: (params, action)=><div className={styles.styleBody}><TimeZone size="md" time={params.time_zone} zone={params.time_zone}/></div>
     }
     ,
     {
