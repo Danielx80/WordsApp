@@ -1,4 +1,3 @@
-import React, { ReactNode } from "react";
 import Avatar from "../Avatar";
 import Infoframe from "../Infoframe";
 import styles from "./CardUsers.module.css";
@@ -8,7 +7,6 @@ const CardUser = ({ name, email, phone, country }: CardUsersProps) => {
   return (
     <div className={styles.cardsContainer}>
       <div className={styles.containerItems}>
-        {/* {checked ? <input type="checkbox" className={styles.checked}/> : null } */}
 
         <div className={styles.containerHeader}>
           <Avatar
@@ -55,5 +53,4 @@ CardUser.defaultProps = {
   email: 'juanito@gmail.com',
   phone: '4272443402',
   country: 'Mexico City (GTM-5)',
-  // checked: true,
 }

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 interface Body2Props {
     children: ReactNode, 
@@ -14,11 +14,6 @@ const weights = {
     bold:700,
     black:900
 }
-
-// const sizes = {
-//     first: 14,
-//     second: 16
-// }
 
 const Body2 = ({children, variant, color, size}:Body2Props) => {
     return (

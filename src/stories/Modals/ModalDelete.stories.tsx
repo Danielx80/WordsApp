@@ -1,5 +1,6 @@
 import { ModalDelete } from '../../components/Modal/ModalDelete/ModalDelete';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 export default {
 	title: 'modal',
 	component: ModalDelete

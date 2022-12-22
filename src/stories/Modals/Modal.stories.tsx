@@ -1,6 +1,23 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Modal from '../../components/Modal/index';
 import ModalEditUser from '../../components/Modal/ModalEditUser/ModalEditUser';
+import { useState } from 'react';
+import { IUser } from '../../interface/FetchAllUserResponse';
+
+const initialValue = {
+	date_of_birth: '',
+	email: '',
+	first_name: '',
+	id: '',
+	id_auth0: '',
+	language: '',
+	last_name: '',
+	second_last_name: '',
+	second_name: '',
+	telephone: '',
+	time_zone: ''
+}
+
 
 export default {
 	title: 'modal',
@@ -24,6 +41,7 @@ ModalComponent.args = {
 		<ModalEditUser
 			size='md'
 			textHeader='Edit User'
+			user={initialValue}
 		/>,
 	isOpen: true,
 }

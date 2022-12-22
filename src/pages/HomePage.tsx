@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAuth0, User } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import RectangleImg from "../components/Images/RectangleImg";
 import styles from "../assets/css/home.module.css";
 import ButtonEdit from "../components/Button/ButtonEdit/ButtonEdit";
@@ -10,8 +10,6 @@ import Infoframe from "../components/Infoframe";
 import CardUser from "../components/CardUsers/CardUsers";
 import PaginationHome from "../components/PaginationHome/PaginationHome";
 import OptionsHome from '../components/PaginationHome/OptionsHome';
-import Modal from "../components/Modal";
-import ModalEditUser from '../components/Modal/ModalEditUser/ModalEditUser';
 
 
 export const HomePage = () => {

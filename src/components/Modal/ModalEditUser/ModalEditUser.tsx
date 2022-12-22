@@ -1,4 +1,4 @@
-import { PencilSimple, User } from "phosphor-react";
+import { User } from "phosphor-react";
 import styles from "./ModalEditUser.module.css";
 import Avatar from "../../Avatar";
 import BasicBtn from "../../Button/BasicButton/BasicButton";
@@ -199,4 +199,5 @@ export default ModalEditUser;
 
 ModalEditUser.defaultProps = {
   size: "md",
+
 };

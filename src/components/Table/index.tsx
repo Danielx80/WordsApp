@@ -17,7 +17,7 @@ import { TableContext } from '../../pages/UsersPage';
 
 
 const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
-    const { isOpenModal, currentUser, setDeleteUser } = useContext(TableContext)
+    const { isOpenModalEditUser, currentUser, setDeleteUser } = useContext(TableContext)
     const [_isLoading, setIsLoading] = useState<boolean>(isLoading ? isLoading : false)
     const [rowsPerPage, setRowsPerPage] = useState<number>(5)
     const [page, setPage] = useState(1)
@@ -34,19 +34,19 @@ const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
     }
 
     const handleCheck = (e?: ChangeEvent<HTMLInputElement>, user?: User) => {
-        console.log(e);
-        if (e?.target.checked) {
-            setDeleteUser(user)
-        } else {
-            setDeleteUser(undefined)
-        }
+        // if (e?.target.checked) {
+            //     setDeleteUser(user)
+            // } else {
+                //     setDeleteUser(undefined)
+                // }
+                e?.target.checked ? setDeleteUser(user) : setDeleteUser(undefined)
+                console.log(e);
+        
     }
 
     const handleCheckHeader = (e?: ChangeEvent<HTMLInputElement>) => {
         setCheckAll(e!.target.checked)
     }
-
-
 
     return (
         <>
@@ -87,7 +87,7 @@ const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
             {slice && <TFooter range={range} slice={slice} setPage={setPage} page={page} callBack={handleRowperPage} data={data} />}
             {
                 currentUser &&
-                <Modal isOpen={isOpenModal}>
+                <Modal isOpen={isOpenModalEditUser}>
                     <ModalEditUser
                         user={currentUser}
                         size='md'

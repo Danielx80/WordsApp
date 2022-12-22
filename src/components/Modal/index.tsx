@@ -13,7 +13,6 @@ const { Provider } = ModalContext
 export const Modal = ({ children, isOpen, callback }: ModalProps) => {
 
 	const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
-
 	const handleClick = (e: MouseEvent) => {
 
 		const { id } = e.target as HTMLDivElement
@@ -37,7 +36,7 @@ export const Modal = ({ children, isOpen, callback }: ModalProps) => {
 
 
 	return (
-		<Provider value={{ setIsOpenModal }}>
+		<Provider value={{ setIsOpenModal}}>
 			<div
 				style={{ display: isOpenModal ? 'block' : 'none' }}
 				className={styles.modalContainer}

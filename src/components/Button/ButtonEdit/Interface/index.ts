@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 
 export interface ButtonEditProps {
     size: 'sm' | 'md' | 'lg' | 'xl',

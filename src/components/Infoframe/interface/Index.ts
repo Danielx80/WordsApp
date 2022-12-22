@@ -6,7 +6,6 @@ export interface TagsUserProps {
     backgroundColor?: string,
     icon?:string,
     flag?: string,
-    // icon?:ReactElement|ReactElement[],
     text?: string,
     onClick?: MouseEventHandler<HTMLDivElement>,
 }

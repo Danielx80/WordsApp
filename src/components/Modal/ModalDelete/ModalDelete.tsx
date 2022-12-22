@@ -1,4 +1,3 @@
-
 import styles from './ModalDelete.module.css'
 import BasicBtn from '../../Button/BasicButton/BasicButton';
 

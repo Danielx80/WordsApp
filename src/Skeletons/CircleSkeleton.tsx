@@ -1,4 +1,3 @@
-import React from "react"
 import ContentLoader, { IContentLoaderProps } from "react-content-loader"
 
 const CircleSkeleton = ({viewBox, size, ...rest}:{viewBox?:string, size?:string, rest?: JSX.IntrinsicAttributes & IContentLoaderProps}) => (

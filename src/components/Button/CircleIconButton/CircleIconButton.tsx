@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, ReactElement } from "react";
+import { MouseEventHandler, ReactElement } from "react";
 import * as icons from 'phosphor-react'
 import styles from './CircleIconButton.module.css'
 

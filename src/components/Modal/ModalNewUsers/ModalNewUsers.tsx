@@ -26,7 +26,7 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
     time_zone: ''
   }
   const [user, setUser] = useState<IUser>(initialValue)
-  const { setIsOpenModal } = useContext(ModalContext)
+  const { setIsOpenModal} = useContext(ModalContext)
   const { mutate } = createUserData()
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -139,9 +139,9 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
             name='time_zone'
             value={user.time_zone}
             size='xl'
-            textTitle="TimeZone*" 
+            textTitle="TimeZone*"
           />
-          
+
           <InputSelectIdiom
             onChange={handleChange}
             name='language'

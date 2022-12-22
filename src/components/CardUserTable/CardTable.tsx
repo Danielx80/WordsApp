@@ -1,27 +1,24 @@
-import Infoframe from '../Infoframe';
-
+import { ChangeEvent, useEffect, useState } from 'react';
 import Avatar from '../Avatar/Avatar';
+import Infoframe from '../Infoframe';
 import styles from './CardTable.module.css'
-import { CardTableProps } from './interface/index';
-import { ChangeEventHandler, ChangeEvent, useState, useEffect } from 'react';
+import { CardTableProps } from './interface';
 
-const CardsTable = ({ checked, email, name, onClick, phone, country, hasCheckBox }: CardTableProps) => {
-	
-	const [isChecked, setIsChecked] = useState(checked)
-	
-	const handlerCheck = (e:  ChangeEvent<HTMLInputElement>) => {
-		setIsChecked(e.target.checked)
+const CardsTable = ({ checked, hasCheckBox, email, name, onClick, phone, country }: CardTableProps) => {
+
+	const [isChecked, setisChecked] = useState(checked)
+	const handlerCheck = (e: ChangeEvent<HTMLInputElement>) => {
+		setisChecked(e.target.checked)
 	}
-
 	useEffect(() => {
-		setIsChecked(checked)
+		setisChecked(checked)
 	}, [checked])
-	
-	return (
+	const resp = country && country.split('/')
 
+	return (
 		<div className={styles.cardsContainer} >
 			<div className={styles.containerItems}>
-				{hasCheckBox ? <input onChange={handlerCheck} type="checkbox" checked={isChecked} className={styles.checked} /> : null}
+				{hasCheckBox ? <input type="checkbox" checked={isChecked} onChange={handlerCheck} className={styles.checked} /> : null}
 
 				<div className={styles.containerHeader}>
 					<Avatar
@@ -50,7 +47,7 @@ const CardsTable = ({ checked, email, name, onClick, phone, country, hasCheckBox
 					<br />
 					<Infoframe
 						size="md"
-						text={country}
+						text={resp && resp[0]}
 						backgroundColor="var(--neutral500)"
 					/>
 				</div>
@@ -65,6 +62,5 @@ CardsTable.defaultProps = {
 	email: 'juanito@gmail.com',
 	phone: '4272443402',
 	country: 'Mexico City (GTM-5)',
-	checked: true,
-	hasCheckBox: true
+	hasCheckBox: true,
 }

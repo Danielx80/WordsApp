@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, ReactElement } from "react";
+import { MouseEventHandler} from "react";
 import { User } from '../../../Table/interface/index';
 
 export interface ModalEditProps {

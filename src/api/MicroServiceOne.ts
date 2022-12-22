@@ -1,7 +1,13 @@
 import axios from '../helpers/InterceptorsToken';
 import { IUser } from '../interface/FetchAllUserResponse';
 
+
 export const getUsers = async () => {
+	const response = await axios.get(`${import.meta.env.VITE_API_BACKEND}/users`)
+	const resp = (response.data)
+	return resp
+}
+export const getUsersCards = async () => {
 	const response = await axios.get(`${import.meta.env.VITE_API_BACKEND}/users`)
 	const resp = (response.data)
 	return resp
@@ -14,9 +20,16 @@ export const createUsers = async (user: IUser) => {
 	return response.data
 };
 
+
 export const updateUsers = async (user: IUser) => {
 	const response = await axios.put(`${import.meta.env.VITE_API_BACKEND}/users/${user.id}`,
-		user,
+		user
 	)
 	return response.data
+}
+
+export const deleteUsers = async (user: IUser) => {
+	const response = await axios.delete(`${import.meta.env.VITE_API_BACKEND}/users/${user.id}`)
+	const resp = (response.data)
+	return resp
 }

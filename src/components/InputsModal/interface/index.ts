@@ -1,4 +1,3 @@
-import { InputHTMLAttributes } from "react"
 
 export interface InputsModalsProps {
 	textTitle: string,

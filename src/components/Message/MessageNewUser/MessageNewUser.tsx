@@ -1,5 +1,5 @@
 import { ThumbsUp } from 'phosphor-react'
-import { MouseEventHandler, useState } from 'react'
+import { MouseEventHandler } from 'react'
 import styles from './MessageNewUser.module.css'
 
 interface Props {

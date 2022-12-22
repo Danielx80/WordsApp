@@ -2,7 +2,7 @@ import { ColumnsProps, User } from "../interface";
 import styles from '../Table.module.css'
 import AvatarUsers from '../AvatarUsers/AvatarUsers';
 import TimeZone from '../TimeZone/TimeZone';
-import { RoundButton } from '../../Button/BtnModal/ButtonModal';
+import { RoundButtonModal } from '../../Button/BtnModal/ButtonModal';
 import { CheckBox } from '../../Button/CheckBox/CheckBox';
 
 export const columns: ColumnsProps[] = [
@@ -54,6 +54,6 @@ export const columns: ColumnsProps[] = [
         field: 'actions',
         headerName: '',
         width: '3%',
-        renderCell: (params, action) => <div className={styles.containerAvatar}><RoundButton user={params as User} iconName='DotsThree' /></div>
+        renderCell: (params, action) => <div className={styles.containerAvatar}><RoundButtonModal user={params as User} iconName='DotsThree' /></div>
     }
 ]

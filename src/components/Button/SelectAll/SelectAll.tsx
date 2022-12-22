@@ -1,6 +1,5 @@
-import React from 'react'
 import styles from './SelectAll.module.css'
-import { MouseEventHandler, useState, ChangeEvent, useEffect } from 'react';
+import { MouseEventHandler, useState, useEffect } from 'react';
 
 interface SelectAllProps {
 	onClick?: MouseEventHandler<HTMLDivElement>

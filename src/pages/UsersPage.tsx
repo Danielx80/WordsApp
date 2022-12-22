@@ -14,15 +14,17 @@ import ModalNewUser from '../components/Modal/ModalNewUsers/ModalNewUsers';
 import { CreateMessage } from '../components/Message/MessageNewUser/index';
 import { getUsersData } from '../hooks/useUsers';
 import { User } from '../components/Table/interface/index';
+import { BtnDeleteUser } from '../components/Button/BtnDeleteUser/BtnDeleteUser';
 
 
 interface TableContextProps {
   currentUser: User | undefined,
   setCurrentUser: React.Dispatch<React.SetStateAction<User | undefined>>,
-  isOpenModal: boolean,
-  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+  isOpenModalEditUser: boolean,
+  setIsOpenModalEditUser: React.Dispatch<React.SetStateAction<boolean>>
   deleteUser: User | undefined
   setDeleteUser: React.Dispatch<React.SetStateAction<User | undefined>>,
+
 }
 
 export const TableContext = createContext<TableContextProps>({} as TableContextProps)
@@ -30,35 +32,38 @@ const TableProvider = TableContext.Provider
 
 export const UsersPage = () => {
 
-  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModalEditUser, setIsOpenModalEditUser] = useState(false)
   const [deleteUser, setDeleteUser] = useState<User>()
   const [currentUser, setCurrentUser] = useState<User>()
-  const { data, isLoading, isFetching, } = getUsersData()
-  const { isAuthenticated } = useAuth0();
-  const { isReady } = useContext(Context);
   const [isOpenModalNewUser, setOpenModalNewUser] = useState(false)
   const [show, setShow] = useState(true);
   const [checkAll, setCheckAll] = useState(false)
+  const { isReady } = useContext(Context);
+  const { isAuthenticated } = useAuth0();
+  const { data, isLoading, error, isError, isFetching } = getUsersData()
+
+  // const { data } = getUsersDataCards();
+
+  // useEffect(() => {
+  //   // if
+  //   isAuthenticated;
+  // }, [isAuthenticated]);
 
   useEffect(() => {
-    console.log(isOpenModal)
-  }, [isOpenModal])
-
-  useEffect(() => {
-    console.log(isOpenModalNewUser)
-  }, [isOpenModalNewUser])
+    console.log(setIsOpenModalEditUser)
+  }, [isOpenModalEditUser])
 
   if (!isReady || isLoading || isFetching) {
     return <></>;
   }
+
+
   console.log(data)
 
   return (
-    <TableProvider value={{ currentUser, setCurrentUser, isOpenModal, setIsOpenModal, deleteUser, setDeleteUser, }}>
+    <TableProvider value={{ currentUser, setCurrentUser, isOpenModalEditUser, setIsOpenModalEditUser, deleteUser, setDeleteUser, }}>
 
-      <div className={styles.floatingBtn}>
-        <CreateMessage />
-      </div>
+    
       <div style={{ backgroundColor: "#F8FAFC" }}>
         <div className={styles.containerUser}>
           <div className={styles.containerHeaderUsers}>
@@ -83,11 +88,17 @@ export const UsersPage = () => {
               icon="MagnifyingGlass"
               onChange={() => { }}
             />
-            {deleteUser && <RoundBtn iconName="Trash" />}
+
+            <div className={styles.trashBtn}>
+              {
+                deleteUser && <BtnDeleteUser iconName="Trash" />
+              }
+            </div>
             <div className={styles.roundsButton}>
-              {show ?
-                null :
-                <SelectAll isChecked={(checked) => setCheckAll(checked)} />
+              {
+                show ?
+                  null :
+                  <SelectAll isChecked={(checked) => setCheckAll(checked)} />
               }
               <RoundBtn iconName="ListBullets" onClick={() => setShow(true)} />
               <RoundBtn iconName="SquaresFour" onClick={show => setShow(!show)} />
@@ -95,19 +106,26 @@ export const UsersPage = () => {
                 <RoundBtn iconName="DotsThree" />
               </div>
             </div>
+
           </div>
 
           {
             show ?
               <div className={styles.containerTable}>
                 <Table data={data.data} />
-                {/* <Table data={dataColumns} /> */}
               </div>
               :
               <div className={styles.containerCard}>
-                {
-                  Array.from({ length: 8 }).map((item, idx) => (
-                    <CardsTable key={idx} checked={checkAll} />
+                {data &&
+                  data.data.map((item: User) => (
+                    <CardsTable
+                      key={item.id}
+                      checked={checkAll}
+                      name={`${item.first_name} ${item.last_name} `}
+                      email={item.email}
+                      phone={item.telephone}
+                      country={item.time_zone}
+                    />
                   ))
                 }
               </div>
