@@ -7,10 +7,16 @@ export const getUsers = async () => {
 	return resp
 }
 
-
 export const createUsers = async (user: IUser) => {
 	const response = await axios.post(`${import.meta.env.VITE_API_BACKEND}/users`,
 		user
 	)
 	return response.data
 };
+
+export const updateUsers = async (user: IUser) => {
+	const response = await axios.put(`${import.meta.env.VITE_API_BACKEND}/users/${user.id}`,
+		user,
+	)
+	return response.data
+}

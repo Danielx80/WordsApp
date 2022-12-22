@@ -2,7 +2,9 @@ import styles from './TimeZone.module.css'
 import { TimeZoneProps } from './interface'
 
 
-const TimeZone = ({ time, zone }: TimeZoneProps) => {
+const TimeZone = ({ time, zone, }: TimeZoneProps) => {
+
+    
 
     return (
 

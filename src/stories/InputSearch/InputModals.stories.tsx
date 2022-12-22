@@ -20,7 +20,7 @@ export const InputModalComponent = Template.bind({})
 InputModalComponent.args = {
 	size: 'lg',
 	type: 'text',
-	text: 'user@user.com',
+	placeholder: 'user@user.com',
 	textTitle: 'Email*',
 	eventHandler: handleClick,
 }

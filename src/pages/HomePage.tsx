@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, User } from "@auth0/auth0-react";
 import RectangleImg from "../components/Images/RectangleImg";
 import styles from "../assets/css/home.module.css";
 import ButtonEdit from "../components/Button/ButtonEdit/ButtonEdit";
@@ -16,7 +16,7 @@ import ModalEditUser from '../components/Modal/ModalEditUser/ModalEditUser';
 
 export const HomePage = () => {
 
-  const { isLoading } = useAuth0();
+  const { isLoading, user } = useAuth0();
 
   useEffect(() => {
     console.log('isLoading')
@@ -40,7 +40,7 @@ export const HomePage = () => {
           </div>
           <div className={styles.containerBody}>
             <div className={styles.containerNameButtton}>
-              <H2 variant="bold">Diego Antonio Juarez</H2>
+              <H2 variant="bold">{user?.nickname}</H2>
               <ButtonEdit
                 onClick={() => { setIsOpenModal(true) }}
                 size="md"
@@ -54,13 +54,13 @@ export const HomePage = () => {
               <Infoframe
                 icon="EnvelopeSimple"
                 size="md"
-                text="isabella@bluepixel.mx"
+                text={user?.email}
                 backgroundColor="var(--neutral500)"
               />
               <Infoframe
                 icon="Phone"
                 size="md"
-                text="442 234 4567"
+                text="+52 442 234 4567"
                 backgroundColor="var(--neutral500)"
               />
 
@@ -158,12 +158,13 @@ export const HomePage = () => {
           </div>
         </div>
       </div>
-      <Modal callback={(Open) => setIsOpenModal(Open)} isOpen={isOpenModal}>
-        <ModalEditUser
+      {/* <Modal callback={(Open) => setIsOpenModal(Open)} isOpen={isOpenModal}>
+        <ModalEditUser 
+        
           size='md'
           textHeader='Edit User'
         />
-      </Modal>
+      </Modal> */}
     </>
   );
 };

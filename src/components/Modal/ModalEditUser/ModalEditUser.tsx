@@ -2,35 +2,64 @@ import { PencilSimple, User } from "phosphor-react";
 import styles from "./ModalEditUser.module.css";
 import Avatar from "../../Avatar";
 import BasicBtn from "../../Button/BasicButton/BasicButton";
-import { useContext } from 'react';
+import { useContext, useState, ChangeEvent } from 'react';
 import { ModalContext } from '../index';
 import { ModalEditProps } from "./interface";
 import InputModal from '../../InputsModal/Inputs';
 import ToggleButton from "../../Button/ToggleButton/ToggleButton";
+import { IUser } from '../../../interface/FetchAllUserResponse';
+import { updateUserData } from '../../../hooks/useUsers';
+import { InputSelectTime } from '../../InputsModal/inputSelect/InputSelect';
+import { InputSelectIdiom } from '../../InputsModal/InputSelectIdioms/InputSelectIdiom';
 
 
-const ModalEditUser = ({ size, textHeader }: ModalEditProps) => {
+const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps) => {
 
+  const initialValue = {
+    date_of_birth: '',
+    email: '',
+    first_name: '',
+    id: '',
+    language: '',
+    last_name: '',
+    second_last_name: '',
+    second_name: '',
+    telephone: '',
+    time_zone: ''
+  }
+
+  const [user, setUser] = useState<IUser>(originalUser)
   const { setIsOpenModal } = useContext(ModalContext)
 
+  const { mutate } = updateUserData()
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setUser(
+      { ...user, [e.target.name]: e.target.value }
+    )
+  }
+  function handleSubmit() {
+    mutate(user)
+    setUser(initialValue)
+    setIsOpenModal(false)
+  }
   return (
 
     <div
       className={`${styles[size]} ${styles.modalContainer}`}
     >
-      
-        <div className={styles.containerTitle}>
-          <div className={styles.iconHeader}>
-            <User size="1.6rem" color="#F97316" />
-          </div>
-          <p className={styles.textHeader}>{textHeader}</p>
+
+      <div className={styles.containerTitle}>
+        <div className={styles.iconHeader}>
+          <User size="1.6rem" color="#F97316" />
         </div>
+        <p className={styles.textHeader}>{textHeader}</p>
+      </div>
       <div className={styles.separationHeader}></div>
       <div className={styles.typeUser}>
-        <div className={styles.textTypeUser }>
+        <div className={styles.textTypeUser}>
           What type of user do you want to create?
         </div>
-        <ToggleButton values={['Admin','Editor']}/>
+        <ToggleButton values={['Admin', 'Editor']} />
       </div>
       <div className={styles.containerPersonalInformation}>
         <div className={styles.personalInfoText}>
@@ -63,25 +92,46 @@ const ModalEditUser = ({ size, textHeader }: ModalEditProps) => {
           </div>
         </div>
 
-        <InputModal size="lg" type="text" text="Jose" textTitle="Name*" />
         <InputModal
+          defaultValue={originalUser.first_name}
+          onChange={handleChange}
+          name='first_name'
+          // value={user.first_name}
           size="lg"
           type="text"
-          text="Ramirez"
+          placeholder='Jose'
+          textTitle="Name*"
+        />
+        <InputModal
+          defaultValue={originalUser.last_name}
+          onChange={handleChange}
+          name='last_name'
+          // value={user.last_name}
+          size="lg"
+          type="text"
+          placeholder='Ramirez'
           textTitle="Last Name*"
         />
 
         <div className={styles.containerBirthdayPhone}>
           <InputModal
+            defaultValue={originalUser.date_of_birth}
+            onChange={handleChange}
+            name='date_of_birth'
+            // value={user.date_of_birth}
             size="md"
             type="date"
-            text="Ramirez"
+            placeholder='22 Nov 1990'
             textTitle="Birthday"
           />
           <InputModal
+            defaultValue={originalUser.telephone}
+            onChange={handleChange}
+            name='telephone'
+            // value={user.telephone}
             size="md"
             type="text"
-            text="(442) 212 2365"
+            placeholder='(442) 212 2365'
             textTitle="Phone number*"
           />
         </div>
@@ -90,24 +140,35 @@ const ModalEditUser = ({ size, textHeader }: ModalEditProps) => {
       <div className={styles.accountInformation}>
         <p className={styles.title}>ACCOUNT INFORMATION</p>
         <InputModal
+          onChange={handleChange}
+          defaultValue={originalUser.email}
+          name='email'
+          // value={user.email}
           size="lg"
           type="text"
-          text="joss.ramirez@company.mx"
+          placeholder='joss.reamirez@company.mx'
           textTitle="Email*"
         />
-        <InputModal
-          size="lg"
-          type="text"
-          text="Mexico City (GMT-5)"
-          textTitle="Timezone"
+        <InputSelectTime
+          onChange={handleChange}
+          name='time_zone'
+          defaultValue={originalUser.time_zone}
+          // value={user.time_zone}
+          size='xl'
+          textTitle="TimeZone"
         />
-        <InputModal
-          size="md"
-          type="text"
-          text="Mexico City (GMT-5)"
-          textTitle="Spanish"
+
+        <InputSelectIdiom
+          onChange={handleChange}
+          name='language'
+          defaultValue={originalUser.language}
+          // value={user.language}
+          textTitle='Language'
+          size="sm"
         />
+
       </div>
+
       <div className={styles.separationFooter}></div>
 
       <div className={styles.buttonFooter}>
@@ -121,6 +182,7 @@ const ModalEditUser = ({ size, textHeader }: ModalEditProps) => {
           text="Cancel"
         />
         <BasicBtn
+          onClick={handleSubmit}
           size="sm"
           backgroundColor="var(--celeste700)"
           fontWeight={700}

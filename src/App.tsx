@@ -15,33 +15,33 @@ export const App = () => {
 
   const [styleConfig, setStyleConfig] = useState({})
 
-  const setStyles = (data:Styles) => {
+  const setStyles = (data: Styles) => {
 
-    let {colors, fontSizes, fonts, spaces} = Object.assign(data)
-    setStyleConfig({...colors, ...fontSizes, ...fonts, ...spaces})
+    let { colors, fontSizes, fonts, spaces } = Object.assign(data)
+    setStyleConfig({ ...colors, ...fontSizes, ...fonts, ...spaces })
 
-  } 
+  }
 
   useEffect(() => {
     setStyles(configStyles)
   }, [])
-  
+
   return (
-    <Auth0Provider
-      clientId={clientId}
-      domain={domain}
-      redirectUri={window.location.origin}
-      useRefreshTokens={true}
+    <QueryClientProvider client={new QueryClient()}>
+      <Auth0Provider
+        clientId={clientId}
+        domain={domain}
+        redirectUri={window.location.origin}
+        useRefreshTokens={true}
       // TODO: recordar quitar el comentario 
       // audience="https://dev-znfmr804n76vwx88.us.auth0.com/api/v2/"
-    >
-      <ContextProvider>
-        <BrowserRouter>
-          <QueryClientProvider client={new QueryClient()}>
+      >
+        <ContextProvider>
+          <BrowserRouter>
             <RouterApp />
-          </QueryClientProvider>
-        </BrowserRouter>
-      </ContextProvider>
-    </Auth0Provider>
+          </BrowserRouter>
+        </ContextProvider>
+      </Auth0Provider>
+    </QueryClientProvider>
   )
 }

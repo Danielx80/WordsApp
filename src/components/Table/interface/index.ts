@@ -9,8 +9,8 @@ export interface ColumnsProps {
     field: string,
     headerName: string,
     width: string | number,
-    renderCell?: (params: Params, action: (e?: ChangeEvent<HTMLInputElement>) => void) => ReactNode | ReactElement
-    actionsItem?: (params: Params, action: () => void) => ReactNode | ReactElement
+    renderCell?: (params: Params, action: (e?: ChangeEvent<HTMLInputElement>, user?: User) => void) => ReactNode | ReactElement
+    actionsItem?: (params: Params, action: (e?: ChangeEvent<HTMLInputElement>, user?: User) => void) => ReactNode | ReactElement
 }
 
 export interface User {

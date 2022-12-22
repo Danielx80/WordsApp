@@ -10,16 +10,16 @@ export interface Image {
 
 export interface IUser {
     date_of_birth: string;
-    email: string;
-    first_name: string;
+    email?: string;
+    first_name?: string;
     id: string;
     id_auth0?: string;
-    language: string;
-    last_name: string;
-    second_last_name: string;
-    second_name: string;
+    language?: string;
+    last_name?: string;
+    second_last_name?: string;
+    second_name?: string;
     telephone: string;
-    time_zone: string;
+    time_zone?: string;
 }
 
 // Converts JSON strings to/from your types
