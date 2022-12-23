@@ -16,8 +16,6 @@ export const BtnDeleteUser = ({ iconName, onClick }: BtnDeleteUserProps) => {
 			<PhosphorIcon size='100%' weight='duotone' className={styles.styleIcon} />
 		</div>
 	)
-
-
 }
 
 

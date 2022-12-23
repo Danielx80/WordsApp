@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { createUsers, getUsers, updateUsers } from '../api/MicroServiceOne';
+import { createUsers, getUsers, updateUsers, deleteUsers } from '../api/MicroServiceOne';
 
 export function getUsersData() {
 	return useQuery('users', getUsers, {
@@ -28,3 +28,12 @@ export function updateUserData() {
 	})
 }
 
+// Metodo para eliminar usuario
+export function deleteUserData() {
+	const QueryClient = useQueryClient()
+	return useMutation(deleteUsers, {
+		onSuccess: async () => {
+			await QueryClient.invalidateQueries('users')
+		}
+	})
+}

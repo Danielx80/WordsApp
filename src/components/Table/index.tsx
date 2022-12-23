@@ -1,4 +1,6 @@
-import { ChangeEvent, useState, useEffect, createContext, useContext } from 'react';
+import { TableContext } from '../../pages/UsersPage';
+import { getUsersData } from '../../hooks/useUsers';
+import { ChangeEvent, useState, useContext, useEffect } from 'react';
 import { v4 } from 'uuid'
 import { columns } from './utils/Columns'
 import TableComponent from './TableComponent'
@@ -13,17 +15,25 @@ import styles from './Table.module.css'
 import useTable from './hooks/useTable';
 import Modal from '../Modal/index';
 import ModalEditUser from '../Modal/ModalEditUser/ModalEditUser';
-import { TableContext } from '../../pages/UsersPage';
-
 
 const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
-    const { isOpenModalEditUser, currentUser, setDeleteUser } = useContext(TableContext)
+    const { isOpenModalEditUser, currentUser, setDeleteUser, setIsOpenModalEditUser } = useContext(TableContext)
     const [_isLoading, setIsLoading] = useState<boolean>(isLoading ? isLoading : false)
     const [rowsPerPage, setRowsPerPage] = useState<number>(5)
     const [page, setPage] = useState(1)
     const [checkAll, setCheckAll] = useState(false)
     //hooks
+    const { refetch } = getUsersData()
     const { slice, range } = useTable(data, page, rowsPerPage)
+
+    useEffect(() => {
+        refetch()
+        console.log({ page, rowsPerPage });
+    }, [page, rowsPerPage])
+
+    useEffect(() => {
+        console.log(currentUser);
+    }, [currentUser])
 
     const handleRowperPage = (number: number) => {
         setRowsPerPage(number)
@@ -34,14 +44,12 @@ const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
     }
 
     const handleCheck = (e?: ChangeEvent<HTMLInputElement>, user?: User) => {
-        // if (e?.target.checked) {
-            //     setDeleteUser(user)
-            // } else {
-                //     setDeleteUser(undefined)
-                // }
-                e?.target.checked ? setDeleteUser(user) : setDeleteUser(undefined)
-                console.log(e);
-        
+        if (e?.target.checked) {
+            setDeleteUser(user)
+        } else {
+            setDeleteUser(undefined)
+        }
+        console.log(e);
     }
 
     const handleCheckHeader = (e?: ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +95,7 @@ const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
             {slice && <TFooter range={range} slice={slice} setPage={setPage} page={page} callBack={handleRowperPage} data={data} />}
             {
                 currentUser &&
-                <Modal isOpen={isOpenModalEditUser}>
+                <Modal isOpen={isOpenModalEditUser} /* setIsOpen={setIsOpenModalEditUser} */>
                     <ModalEditUser
                         user={currentUser}
                         size='md'

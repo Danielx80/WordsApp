@@ -1,23 +1,20 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Modal from '../../components/Modal/index';
 import ModalEditUser from '../../components/Modal/ModalEditUser/ModalEditUser';
-import { useState } from 'react';
-import { IUser } from '../../interface/FetchAllUserResponse';
 
 const initialValue = {
-	date_of_birth: '',
-	email: '',
-	first_name: '',
-	id: '',
-	id_auth0: '',
-	language: '',
-	last_name: '',
-	second_last_name: '',
-	second_name: '',
-	telephone: '',
-	time_zone: ''
+	date_of_birth: '12/13/2020',
+	email: 'Danielmondragon@gmail.com',
+	first_name: 'daniel',
+	id: '84965516518',
+	id_auth0: 'auth0|4615615684845456',
+	language: 'Spanish',
+	last_name: 'Mondragon',
+	second_last_name: 'Garcia',
+	second_name: 'Ricardo',
+	telephone: '427244345',
+	time_zone: '(GTM+ 05:00)Ekaterinburg'
 }
-
 
 export default {
 	title: 'modal',

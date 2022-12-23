@@ -14,7 +14,7 @@ export const RoundButtonModal = ({ iconName, onClick, user }: RoundButtonModalPr
     const { isOpenModalEditUser, setIsOpenModalEditUser, setCurrentUser } = useContext(TableContext)
     let PhosphorIcon: any = icons[iconName as keyof typeof icons]
     return (
-        <div style={{ width: 32, height: 32 }} className={styles.containerButton} onClick={() => { setIsOpenModalEditUser(!isOpenModalEditUser); setCurrentUser(user) }}>
+        <div style={{ width: 32, height: 32 }} className={styles.containerButton} onClick={() => { setIsOpenModalEditUser(!isOpenModalEditUser); setCurrentUser(_prev => user) }}>
             <PhosphorIcon size='100%' weight='bold' className={styles.propsIcon} />
         </div>
 

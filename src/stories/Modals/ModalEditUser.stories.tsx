@@ -1,5 +1,4 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react'
-import { MouseEvent} from 'react'
 import ModalEditUser from '../../components/Modal/ModalEditUser/ModalEditUser'
 
 export default {

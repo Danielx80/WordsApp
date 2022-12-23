@@ -2,8 +2,7 @@ import { User } from "phosphor-react";
 import styles from "./ModalEditUser.module.css";
 import Avatar from "../../Avatar";
 import BasicBtn from "../../Button/BasicButton/BasicButton";
-import { useContext, useState, ChangeEvent } from 'react';
-import { ModalContext } from '../index';
+import { useContext, useState, ChangeEvent, useEffect } from 'react';
 import { ModalEditProps } from "./interface";
 import InputModal from '../../InputsModal/Inputs';
 import ToggleButton from "../../Button/ToggleButton/ToggleButton";
@@ -11,6 +10,7 @@ import { IUser } from '../../../interface/FetchAllUserResponse';
 import { updateUserData } from '../../../hooks/useUsers';
 import { InputSelectTime } from '../../InputsModal/inputSelect/InputSelect';
 import { InputSelectIdiom } from '../../InputsModal/InputSelectIdioms/InputSelectIdiom';
+import { TableContext } from '../../../pages/UsersPage';
 
 
 const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps) => {
@@ -28,20 +28,29 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
     time_zone: ''
   }
 
-  const [user, setUser] = useState<IUser>(originalUser)
-  const { setIsOpenModal } = useContext(ModalContext)
-
+  const [user, setUser] = useState<IUser>(originalUser ?? initialValue)
+  const { setIsOpenModalEditUser } = useContext(TableContext)
   const { mutate } = updateUserData()
+  console.log(user);
+  
+  useEffect(() => setUser(_ => originalUser), [originalUser])
+
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setUser(
       { ...user, [e.target.name]: e.target.value }
     )
   }
+
+  // useEffect(() => {
+  //   setUser(originalUser)
+  // }, [originalUser])
+
   function handleSubmit() {
     mutate(user)
     setUser(initialValue)
-    setIsOpenModal(false)
+    setIsOpenModalEditUser(false)
   }
+
   return (
 
     <div
@@ -93,7 +102,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
         </div>
 
         <InputModal
-          defaultValue={originalUser.first_name}
+          value={user.first_name}
           onChange={handleChange}
           name='first_name'
           // value={user.first_name}
@@ -103,7 +112,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
           textTitle="Name*"
         />
         <InputModal
-          defaultValue={originalUser.last_name}
+          value={user.last_name}
           onChange={handleChange}
           name='last_name'
           // value={user.last_name}
@@ -115,7 +124,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
 
         <div className={styles.containerBirthdayPhone}>
           <InputModal
-            defaultValue={originalUser.date_of_birth}
+            value={user.date_of_birth}
             onChange={handleChange}
             name='date_of_birth'
             // value={user.date_of_birth}
@@ -125,7 +134,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
             textTitle="Birthday"
           />
           <InputModal
-            defaultValue={originalUser.telephone}
+            value={user.telephone}
             onChange={handleChange}
             name='telephone'
             // value={user.telephone}
@@ -141,7 +150,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
         <p className={styles.title}>ACCOUNT INFORMATION</p>
         <InputModal
           onChange={handleChange}
-          defaultValue={originalUser.email}
+          value={user.email}
           name='email'
           // value={user.email}
           size="lg"
@@ -152,7 +161,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
         <InputSelectTime
           onChange={handleChange}
           name='time_zone'
-          defaultValue={originalUser.time_zone}
+          value={user.time_zone}
           // value={user.time_zone}
           size='xl'
           textTitle="TimeZone"
@@ -161,7 +170,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
         <InputSelectIdiom
           onChange={handleChange}
           name='language'
-          defaultValue={originalUser.language}
+          value={user.language}
           // value={user.language}
           textTitle='Language'
           size="sm"
@@ -173,7 +182,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
 
       <div className={styles.buttonFooter}>
         <BasicBtn
-          onClick={() => setIsOpenModal(false)}
+          onClick={() => setIsOpenModalEditUser(false)}
           size="sm"
           backgroundColor="white"
           fontWeight={700}

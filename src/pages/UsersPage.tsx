@@ -15,6 +15,8 @@ import { CreateMessage } from '../components/Message/MessageNewUser/index';
 import { getUsersData } from '../hooks/useUsers';
 import { User } from '../components/Table/interface/index';
 import { BtnDeleteUser } from '../components/Button/BtnDeleteUser/BtnDeleteUser';
+import ModalDelete from '../components/Modal/ModalDelete/ModalDelete';
+import { MessageNewUser } from '../components/Message/MessageNewUser/MessageNewUser';
 
 
 interface TableContextProps {
@@ -24,7 +26,6 @@ interface TableContextProps {
   setIsOpenModalEditUser: React.Dispatch<React.SetStateAction<boolean>>
   deleteUser: User | undefined
   setDeleteUser: React.Dispatch<React.SetStateAction<User | undefined>>,
-
 }
 
 export const TableContext = createContext<TableContextProps>({} as TableContextProps)
@@ -36,13 +37,12 @@ export const UsersPage = () => {
   const [deleteUser, setDeleteUser] = useState<User>()
   const [currentUser, setCurrentUser] = useState<User>()
   const [isOpenModalNewUser, setOpenModalNewUser] = useState(false)
+  const [OpenModalDeleteUser, setOpenModalDeleteUser] = useState(false)
   const [show, setShow] = useState(true);
   const [checkAll, setCheckAll] = useState(false)
   const { isReady } = useContext(Context);
   const { isAuthenticated } = useAuth0();
-  const { data, isLoading, error, isError, isFetching } = getUsersData()
-
-  // const { data } = getUsersDataCards();
+  const { data, isLoading, error, isError } = getUsersData()
 
   // useEffect(() => {
   //   // if
@@ -53,7 +53,7 @@ export const UsersPage = () => {
     console.log(setIsOpenModalEditUser)
   }, [isOpenModalEditUser])
 
-  if (!isReady || isLoading || isFetching) {
+  if (!isReady || isLoading) {
     return <></>;
   }
 
@@ -61,9 +61,11 @@ export const UsersPage = () => {
   console.log(data)
 
   return (
-    <TableProvider value={{ currentUser, setCurrentUser, isOpenModalEditUser, setIsOpenModalEditUser, deleteUser, setDeleteUser, }}>
+    <TableProvider value={{ currentUser, setCurrentUser, isOpenModalEditUser, setIsOpenModalEditUser, deleteUser, setDeleteUser }}>
+      <div className={styles.floatingBtn}>
+        <CreateMessage />
+      </div>
 
-    
       <div style={{ backgroundColor: "#F8FAFC" }}>
         <div className={styles.containerUser}>
           <div className={styles.containerHeaderUsers}>
@@ -91,7 +93,7 @@ export const UsersPage = () => {
 
             <div className={styles.trashBtn}>
               {
-                deleteUser && <BtnDeleteUser iconName="Trash" />
+                deleteUser && <BtnDeleteUser iconName="Trash" onClick={() => setOpenModalDeleteUser(true)} />
               }
             </div>
             <div className={styles.roundsButton}>
@@ -133,12 +135,22 @@ export const UsersPage = () => {
 
         </div>
       </div>
+
       <Modal callback={(Open) => setOpenModalNewUser(Open)} isOpen={isOpenModalNewUser} >
         <ModalNewUser
           size='md'
           textHeader='New User'
         />
+      </Modal >
+      <Modal callback={(Open) => setOpenModalDeleteUser(Open)} isOpen={OpenModalDeleteUser}>
+        <div className={styles.deleteModal}>
+          <ModalDelete
+            title='Delete Users'
+            body='The users you selected will be permanently deleted, do you want to continue?'
+          />
+        </div>
       </Modal>
+
     </TableProvider>
   );
 };
