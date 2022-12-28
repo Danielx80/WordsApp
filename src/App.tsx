@@ -6,6 +6,7 @@ import { QueryClientProvider, QueryClient } from 'react-query'
 import { Styles } from './interface';
 import { useEffect, useState } from 'react';
 import configStyles from './json/configStyles.json'
+import { TableContextProvider } from './context/TableContextProvider';
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
@@ -38,7 +39,9 @@ export const App = () => {
       >
         <ContextProvider>
           <BrowserRouter>
-            <RouterApp />
+            <TableContextProvider>
+              <RouterApp />
+            </TableContextProvider>
           </BrowserRouter>
         </ContextProvider>
       </Auth0Provider>

@@ -1,5 +1,4 @@
-import { TableContext } from '../../pages/UsersPage';
-import { getUsersData } from '../../hooks/useUsers';
+import './tableStyles.css'
 import { ChangeEvent, useState, useContext, useEffect } from 'react';
 import { v4 } from 'uuid'
 import { columns } from './utils/Columns'
@@ -15,25 +14,26 @@ import styles from './Table.module.css'
 import useTable from './hooks/useTable';
 import Modal from '../Modal/index';
 import ModalEditUser from '../Modal/ModalEditUser/ModalEditUser';
+import { TableContext } from '../../context/TableContext';
+
 
 const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
-    const { isOpenModalEditUser, currentUser, setDeleteUser, setIsOpenModalEditUser } = useContext(TableContext)
+    const { state, setDeleteUser, } = useContext(TableContext)
+    const { currentUser, isOpenModalEditUser } = state
     const [_isLoading, setIsLoading] = useState<boolean>(isLoading ? isLoading : false)
+    const [activeRow, setActiveRow] = useState(false)
     const [rowsPerPage, setRowsPerPage] = useState<number>(5)
     const [page, setPage] = useState(1)
     const [checkAll, setCheckAll] = useState(false)
     //hooks
-    const { refetch } = getUsersData()
+    // const { refetch } = getUsersData()
     const { slice, range } = useTable(data, page, rowsPerPage)
 
     useEffect(() => {
-        refetch()
+        // refetch()
         console.log({ page, rowsPerPage });
     }, [page, rowsPerPage])
 
-    useEffect(() => {
-        console.log(currentUser);
-    }, [currentUser])
 
     const handleRowperPage = (number: number) => {
         setRowsPerPage(number)
@@ -44,12 +44,22 @@ const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
     }
 
     const handleCheck = (e?: ChangeEvent<HTMLInputElement>, user?: User) => {
+        let parentElement = e?.target?.parentNode?.parentElement
         if (e?.target.checked) {
+            console.log(user?.id);
+
             setDeleteUser(user)
+
+            if (parentElement) {
+                parentElement.classList.add('selected')
+            }
         } else {
             setDeleteUser(undefined)
+            if (parentElement) {
+                parentElement.classList.remove('selected')
+            }
         }
-        console.log(e);
+        console.log(e?.target.parentNode?.parentNode);
     }
 
     const handleCheckHeader = (e?: ChangeEvent<HTMLInputElement>) => {
@@ -60,10 +70,11 @@ const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
         <>
             <TableComponent style={{ width: '100%' }}>
                 <Thead>
-                    <Tr>
+
+                    <Tr className={styles.trHead}>
                         {
                             columns.map(column => (
-                                <Th style={{ width: column.width, margin: '0', border: 'none', boxSizing: 'border-box' }} key={v4()}>
+                                <Th style={{ width: column.width }} key={v4()}>
                                     {
                                         column.headerName !== 'check' ? <p className={styles.styleheader}>{column.headerName}</p> : <input className={styles.inputHeader} type='checkbox' checked={checkAll} onChange={handleCheckHeader} />
                                     }
@@ -75,7 +86,7 @@ const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
                 <Tbody>
                     {
                         slice! && slice.map((item) =>
-                            <Tr key={item.id}>
+                            <Tr key={item.id} className={styles.trBody}>
                                 {
                                     columns.map((row, i) => (
                                         <Td key={v4()} style={{ width: row.width, margin: '0', padding: 0, border: 'none', boxSizing: 'border-box' }}>

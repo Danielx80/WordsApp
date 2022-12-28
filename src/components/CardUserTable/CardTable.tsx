@@ -37,7 +37,7 @@ const CardsTable = ({ checked, hasCheckBox, email, name, onClick, phone, country
 				</div>
 				<div className={styles.line}></div>
 
-				<div className={styles.footer}>
+				<div className={styles.containerHeader}>
 					<Infoframe
 						icon="Phone"
 						size="md"

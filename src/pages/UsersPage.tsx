@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState, createContext } from 'react';
+import { useContext, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import Context from "../context/Context";
 import styles from "../assets/css/users.module.css";
@@ -16,26 +16,11 @@ import { getUsersData } from '../hooks/useUsers';
 import { User } from '../components/Table/interface/index';
 import { BtnDeleteUser } from '../components/Button/BtnDeleteUser/BtnDeleteUser';
 import ModalDelete from '../components/Modal/ModalDelete/ModalDelete';
-import { MessageNewUser } from '../components/Message/MessageNewUser/MessageNewUser';
-
-
-interface TableContextProps {
-  currentUser: User | undefined,
-  setCurrentUser: React.Dispatch<React.SetStateAction<User | undefined>>,
-  isOpenModalEditUser: boolean,
-  setIsOpenModalEditUser: React.Dispatch<React.SetStateAction<boolean>>
-  deleteUser: User | undefined
-  setDeleteUser: React.Dispatch<React.SetStateAction<User | undefined>>,
-}
-
-export const TableContext = createContext<TableContextProps>({} as TableContextProps)
-const TableProvider = TableContext.Provider
+import { TableContext } from '../context/TableContext';
 
 export const UsersPage = () => {
-
-  const [isOpenModalEditUser, setIsOpenModalEditUser] = useState(false)
-  const [deleteUser, setDeleteUser] = useState<User>()
-  const [currentUser, setCurrentUser] = useState<User>()
+  const { state } = useContext(TableContext)
+  const { deleteUser } = state
   const [isOpenModalNewUser, setOpenModalNewUser] = useState(false)
   const [OpenModalDeleteUser, setOpenModalDeleteUser] = useState(false)
   const [show, setShow] = useState(true);
@@ -44,24 +29,13 @@ export const UsersPage = () => {
   const { isAuthenticated } = useAuth0();
   const { data, isLoading, error, isError } = getUsersData()
 
-  // useEffect(() => {
-  //   // if
-  //   isAuthenticated;
-  // }, [isAuthenticated]);
-
-  useEffect(() => {
-    console.log(setIsOpenModalEditUser)
-  }, [isOpenModalEditUser])
-
   if (!isReady || isLoading) {
     return <></>;
   }
 
 
-  console.log(data)
-
   return (
-    <TableProvider value={{ currentUser, setCurrentUser, isOpenModalEditUser, setIsOpenModalEditUser, deleteUser, setDeleteUser }}>
+    <>
       <div className={styles.floatingBtn}>
         <CreateMessage />
       </div>
@@ -94,6 +68,7 @@ export const UsersPage = () => {
             <div className={styles.trashBtn}>
               {
                 deleteUser && <BtnDeleteUser iconName="Trash" onClick={() => setOpenModalDeleteUser(true)} />
+
               }
             </div>
             <div className={styles.roundsButton}>
@@ -102,10 +77,30 @@ export const UsersPage = () => {
                   null :
                   <SelectAll isChecked={(checked) => setCheckAll(checked)} />
               }
-              <RoundBtn iconName="ListBullets" onClick={() => setShow(true)} />
-              <RoundBtn iconName="SquaresFour" onClick={show => setShow(!show)} />
+              <RoundBtn
+                iconName="ListDashes"
+                onClick={() => setShow(true)}
+                weight="bold"
+                height={2}
+                width={2}
+                padding={0.6}
+              />
+              <RoundBtn
+                iconName="SquaresFour"
+                onClick={(show) => setShow(!show)}
+                weight="regular"
+                height={2}
+                width={2}
+                padding={0.6}
+              />
               <div style={{ marginLeft: 24 }}>
-                <RoundBtn iconName="DotsThree" />
+                <RoundBtn
+                  iconName="DotsThree"
+                  weight="bold"
+                  height={3}
+                  width={3}
+                  padding={0.1}
+                />
               </div>
             </div>
 
@@ -147,10 +142,10 @@ export const UsersPage = () => {
           <ModalDelete
             title='Delete Users'
             body='The users you selected will be permanently deleted, do you want to continue?'
+            user={deleteUser}
           />
         </div>
       </Modal>
-
-    </TableProvider>
+    </>
   );
 };

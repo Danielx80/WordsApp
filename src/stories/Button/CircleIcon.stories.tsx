@@ -20,5 +20,4 @@ const Template: ComponentStory<typeof CircleIcon> = (args) => {
 export const CircleIconComponent = Template.bind({})
 CircleIconComponent.args = {
 	iconName: 'Phone',
-	onClick: handleClick
 }

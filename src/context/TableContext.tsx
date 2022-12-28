@@ -1,15 +1,14 @@
-import { createContext } from 'react';
+import React, { createContext } from 'react';
 import { User } from '../components/Table/interface/index';
+import { TableContextState } from './TableContextProvider';
+import { Action } from './TableReducer';
 
 
-// interface TableContextProps {
-// 	currentUser: User | undefined,
-// 	setCurrentUser: React.Dispatch<React.SetStateAction<User | undefined>>,
-// 	isOpenModal: boolean,
-// 	setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>
-// 	deleteUser: User | undefined
-// 	setDeleteUser: React.Dispatch<React.SetStateAction<User | undefined>>,
-// }
+interface TableContextProps {
+    state:TableContextState,
+    setCurrentUser:(currentUser?: User) => void
+    setDeleteUser:(deleteUser?: User) => void
+    setIsOpenModalEditUser:(isOpenModalEditUser: boolean) => void
+}
 
-// export const TableContext = createContext<TableContextProps>({} as TableContextProps)
-// const TableProvider = TableContext.Provider
+export const TableContext = createContext<TableContextProps>({} as TableContextProps) 

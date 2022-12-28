@@ -7,6 +7,7 @@ export interface InputsModalsProps {
 	text?: string,
 	defaultValue?: string,
 	onChange?: any,
+	disabled?: boolean,
 	name?: string,
 	value?: string,
 	eventHandler?: React.ChangeEventHandler<HTMLInputElement>

@@ -64,13 +64,8 @@
     font-family: var(--fontA);
     font-style: normal;
     font-weight: 700;
-    font-size: 14px;
-    line-height: 20px;
-    /* or 143% */
-
-
-    /* Neutral/800 */
-
+    font-size: 1.4rem;
+    line-height: 2rem;
     color: var(--neutral800);
 
 }
@@ -81,8 +76,5 @@
     font-weight: 400;
     font-size: 1.2rem;
     line-height: 1.6rem;
-
-    /* cool-gray/500 */
-
     color: var(--gray500);
 }

@@ -30,6 +30,5 @@ export const updateUsers = async (user: IUser) => {
 
 export const deleteUsers = async (user: IUser) => {
 	const response = await axios.delete(`${import.meta.env.VITE_API_BACKEND}/users/${user.id}`)
-	const resp = (response.data)
-	return resp
+	return response.data
 }

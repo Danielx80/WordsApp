@@ -11,6 +11,7 @@ import { IUser } from "../../../interface/FetchAllUserResponse";
 import { createUserData } from '../../../hooks/useUsers';
 import { InputSelectTime } from "../../InputsModal/inputSelect/InputSelect";
 import { InputSelectIdiom } from '../../InputsModal/InputSelectIdioms/InputSelectIdiom';
+import { RoundBtn } from '../../Button/RoundButton/RoundButton';
 
 const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
 
@@ -52,6 +53,9 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
             <User size="1.6rem" color="#F97316" />
           </div>
           <p className={styles.textHeader}>{textHeader}</p>
+          <div className={styles.closeBtn}>
+            <RoundBtn iconName='X' weight="fill"/>
+          </div>
         </div>
         <div className={styles.separationHeader}></div>
         <div className={styles.typeUser}>

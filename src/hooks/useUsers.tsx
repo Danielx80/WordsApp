@@ -30,10 +30,12 @@ export function updateUserData() {
 
 // Metodo para eliminar usuario
 export function deleteUserData() {
-	const QueryClient = useQueryClient()
+	const queryClient = useQueryClient()
 	return useMutation(deleteUsers, {
 		onSuccess: async () => {
-			await QueryClient.invalidateQueries('users')
+			await queryClient.invalidateQueries({
+				queryKey: ['users']
+			})
 		}
 	})
 }

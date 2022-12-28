@@ -25,9 +25,9 @@ export const columns: ColumnsProps[] = [
             </div>
     },
     {
-        field: 'phone',
+        field: 'phone' ,
         headerName: 'Phone',
-        width: '19%',
+        width: '13%',
         renderCell: (params, action) => <p className={styles.styleBody}>{params.telephone}</p>
     },
     {
@@ -39,13 +39,13 @@ export const columns: ColumnsProps[] = [
     {
         field: 'language',
         headerName: 'Language',
-        width: '14%',
+        width: '13%',
         renderCell: (params, action) => <p className={styles.styleBody}>{params.language}</p>
     },
     {
-        field: 'Timezone',
-        headerName: 'Timezone',
-        width: '23%',
+        field: 'Time zone',
+        headerName: 'TimeZone',
+        width: '24%',
 
         renderCell: (params, action) => <div className={styles.styleBody}><TimeZone size="md" time={params.time_zone} zone={params.time_zone} /></div>
     }
@@ -53,7 +53,7 @@ export const columns: ColumnsProps[] = [
     {
         field: 'actions',
         headerName: '',
-        width: '3%',
-        renderCell: (params, action) => <div className={styles.containerAvatar}><RoundButtonModal user={params as User} iconName='DotsThree' /></div>
+        width: '2%',
+        renderCell: (params, action) => <div className={styles.containerEdit}><RoundButtonModal user={params as User} iconName='Pencil' /></div>
     }
 ]

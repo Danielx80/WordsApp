@@ -10,7 +10,7 @@ const HomeCard = ({ header, body }: HomeCardsProps) => {
       <div>
         <div className={styles.containerText}>
         <div className={styles.circleButtonHeaeder}>
-            <CircleIcon iconName="DotsThree" />
+            <CircleIcon iconName="DotsThree" weight="bold"/>
           </div>
           <div className={styles.containerHeader}>
             <h5 className={styles.textHeader}>{header}</h5>
@@ -28,7 +28,7 @@ const HomeCard = ({ header, body }: HomeCardsProps) => {
             backgroundColor="var(--orange500)"
             textName="Martha Rodriguez"
           />
-          <CircleIcon iconName="ListBullets" />
+          <CircleIcon iconName="ListBullets" weight="fill"/>
           
           
         </div>

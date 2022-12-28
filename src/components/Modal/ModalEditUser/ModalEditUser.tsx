@@ -10,7 +10,7 @@ import { IUser } from '../../../interface/FetchAllUserResponse';
 import { updateUserData } from '../../../hooks/useUsers';
 import { InputSelectTime } from '../../InputsModal/inputSelect/InputSelect';
 import { InputSelectIdiom } from '../../InputsModal/InputSelectIdioms/InputSelectIdiom';
-import { TableContext } from '../../../pages/UsersPage';
+import { TableContext } from "../../../context/TableContext";
 
 
 const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps) => {
@@ -32,7 +32,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
   const { setIsOpenModalEditUser } = useContext(TableContext)
   const { mutate } = updateUserData()
   console.log(user);
-  
+
   useEffect(() => setUser(_ => originalUser), [originalUser])
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -152,7 +152,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
           onChange={handleChange}
           value={user.email}
           name='email'
-          // value={user.email}
+          disabled
           size="lg"
           type="text"
           placeholder='joss.reamirez@company.mx'

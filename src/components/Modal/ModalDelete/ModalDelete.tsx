@@ -1,44 +1,29 @@
 import styles from './ModalDelete.module.css'
 import BasicBtn from '../../Button/BasicButton/BasicButton';
-import { useState, useContext, ChangeEvent } from 'react';
+import { useState, useContext } from 'react';
 import { ModalContext } from '../index';
 import { IUser } from '../../../interface/FetchAllUserResponse';
 import { deleteUserData } from '../../../hooks/useUsers';
 
-
 interface ModalDeleteProps {
 	title?: string,
 	body?: string,
+	user: IUser | undefined
 }
 
-export const ModalDelete = ({ title, body }: ModalDeleteProps) => {
-	
-	const initialValue = {
-		date_of_birth: '',
-		email: '',
-		first_name: '',
-		id: '',
-		language: '',
-		last_name: '',
-		second_last_name: '',
-		second_name: '',
-		telephone: '',
-		time_zone: ''
-	}
+export const ModalDelete = ({ title, body, user: originalName }: ModalDeleteProps) => {
 
-	const [user, setUser] = useState<IUser>(initialValue)
+
+	const [user, setUser] = useState<IUser>(originalName ?? {} as IUser)
 	const { setIsOpenModal } = useContext(ModalContext)
 
 	const { mutate } = deleteUserData()
-	function handleChange(e: ChangeEvent<HTMLInputElement>) {
-		setUser(
-			{ ...user, [e.target.id]: e.target.value }
-		)
-	}
+
 	function handleSubmit() {
-		mutate(user)
-		setUser(initialValue)
+		mutate(originalName ?? {} as IUser)
+		console.log(originalName);
 		setIsOpenModal(false)
+		
 	}
 	return (
 		<div className={styles.content}>
