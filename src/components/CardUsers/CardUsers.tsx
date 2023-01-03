@@ -37,9 +37,7 @@ const CardUser = ({ name, email, phone, country }: CardUsersProps) => {
               size="md"
               text={country}
               backgroundColor="var(--neutral500)"
-
             />
-          
         </div>
       </div>
     </div>

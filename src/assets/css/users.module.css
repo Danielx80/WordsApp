@@ -66,16 +66,6 @@
   z-index: 99;
 }
 
-
-.trashBtn {
-  position: relative;
-  justify-content: center;
-  margin-top: 12px;
-  padding-left: 40%;
-  gap: 10;
-}
-
-
 .deleteModal {
   z-index: 110;
 	display: flex;

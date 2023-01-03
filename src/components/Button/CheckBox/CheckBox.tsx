@@ -10,7 +10,6 @@ interface CheckBoxProps {
 	user: User | undefined
 }
 
-
 export const CheckBox = ({ defaultChecked, onChange, user }: CheckBoxProps) => {
 
 	const { state } = useContext(TableContext)
@@ -33,7 +32,6 @@ export const CheckBox = ({ defaultChecked, onChange, user }: CheckBoxProps) => {
 	}, [deleteUser, user])
 
 	return (
-
 		<input checked={defaultChecked ? defaultChecked : isCheked} className={styles.input} type='checkbox' onChange={onChange} />
 	)
 }

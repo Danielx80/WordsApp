@@ -37,13 +37,13 @@ export const App = () => {
       // TODO: recordar quitar el comentario 
       // audience="https://dev-znfmr804n76vwx88.us.auth0.com/api/v2/"
       >
-        <ContextProvider>
-          <BrowserRouter>
-            <TableContextProvider>
+        <TableContextProvider>
+          <ContextProvider>
+            <BrowserRouter>
               <RouterApp />
-            </TableContextProvider>
-          </BrowserRouter>
-        </ContextProvider>
+            </BrowserRouter>
+          </ContextProvider>
+        </TableContextProvider>
       </Auth0Provider>
     </QueryClientProvider>
   )

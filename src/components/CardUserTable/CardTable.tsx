@@ -10,10 +10,16 @@ const CardsTable = ({ checked, hasCheckBox, email, name, onClick, phone, country
 	const handlerCheck = (e: ChangeEvent<HTMLInputElement>) => {
 		setisChecked(e.target.checked)
 	}
+	
+	const resp = country?.split(' ')
+
+	const first = country?.indexOf('/')
+	const second = country?.indexOf(') ')
+	const good = country?.slice(second, first).slice(1,-1) //construye el arreglo conforme a los index y quita el parentesis
+
 	useEffect(() => {
 		setisChecked(checked)
 	}, [checked])
-	const resp = country && country.split('/')
 
 	return (
 		<div className={styles.cardsContainer} >
@@ -47,7 +53,7 @@ const CardsTable = ({ checked, hasCheckBox, email, name, onClick, phone, country
 					<br />
 					<Infoframe
 						size="md"
-						text={resp && resp[0]}
+						text={`${good} ${resp && resp[0]}`}
 						backgroundColor="var(--neutral500)"
 					/>
 				</div>

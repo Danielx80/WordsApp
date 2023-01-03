@@ -5,7 +5,7 @@
 
 .md {
   width: 65rem;
-  height: 98.8rem;
+  height: 106rem;
 }
 
 .xl {
@@ -20,7 +20,6 @@
   right: 0rem;
   top: 0rem;
   bottom: 0rem;
-  /* Neutral/200 */
   background-color: white;
   border: 0.1rem solid #e5e5e5;
   box-shadow: 0rem 1px 2px -1px rgba(0, 0, 0, 0.1),
@@ -57,7 +56,6 @@
   padding: 0.8rem;
   border-radius: 50%;
   background: #ffedd5;
-
   width: 3.2rem;
   height: 3.2rem;
 }
@@ -155,11 +153,26 @@
 }
 
 .containerBirthdayPhone {
+  justify-content: space-between;
+  justify-items: center;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
   padding: 0rem;
   gap: 1.6rem;
+}
+
+.massageBirth {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.massagePhone {
+  margin-left: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .accountInformation {
@@ -193,7 +206,7 @@
 }
 
 .inputContainer {
-  position: relative;
+  position: relaive;
   display: flex;
   align-items: center;
   margin-left: 2.4rem;
@@ -228,4 +241,24 @@
   font-size: 1.4rem;
   line-height: 1.9rem;
   color: var(--neutral800);
+}
+
+.headerTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.closeIcon {
+  margin-top: 2rem;
+  margin-left: 45rem;
+  margin-right: 29.25px;
+  color: var(--neutral500);
+  cursor: pointer;
+}
+
+.closeIcon:hover {
+  color: var(--orange500);
+  cursor: pointer;
 }

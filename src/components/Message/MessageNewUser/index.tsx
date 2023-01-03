@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { MessageNewUser } from './MessageNewUser';
 
-
 export const CreateMessage = () => {
 	const [showMsg, setshowMsg] = useState(true)
 	return (
@@ -12,7 +11,6 @@ export const CreateMessage = () => {
 						<MessageNewUser onClick={showMsg => setshowMsg(!showMsg)} />
 					</div> :
 					null
-
 			}
 		</>
 	)

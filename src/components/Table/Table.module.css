@@ -1,5 +1,4 @@
 .spaceHeader {
-
   align-items: center;
   padding: 1.6rem;
   margin: 0;
@@ -86,18 +85,12 @@
 .tableColor {
   border-spacing: 0;
   padding: 0rem;
-  background-color: #ffffff;
-  border-radius: 0.4rem 0.4rem 0rem 0rem;
+  background: #ffffff;
   margin-top: 2.4rem;
-  filter:
-    drop-shadow(0em 0.5rem 0.125rem rgba(0, 0, 0, 0.1)) drop-shadow(0rem 0.5rem 0.525rem rgba(0, 0, 0, 0.1));
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
-  -webkit-border-radius: 0.5rem 0.5rem 0rem 0rem;
-  -moz-border-radius: 0.5rem 0.5rem 0rem 0rem;
-  -ms-border-radius: 0.5rem 0.5rem 0rem 0rem;
-  -o-border-radius: 0.5rem 0.5rem 0rem 0rem;
+  filter: drop-shadow(0.1rem 0.125rem 0.3rem rgba(0, 0, 0, 0.09)) 
+          drop-shadow(0rem 0.125rem 0.2rem rgba(0, 0, 0, 0.09));
+    border-radius: 0.4rem 0.4rem 0rem 0rem;
 }
-
 
 .contentBody {
   margin-left: 3rem;
@@ -159,8 +152,8 @@
   justify-content: space-between;
   width: 100%;
   padding: 1.2rem 2.4rem;
-  filter:
-    drop-shadow(0rem 0.2rem 0.125rem rgba(0, 0, 0, 0.1)) drop-shadow(0rem 0.25rem 0.575rem rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0.1rem 0.125rem 0.3rem rgba(0, 0, 0, 0.09)) 
+          drop-shadow(0rem 0.3rem 0.2rem rgba(0, 0, 0, 0.09)); 
   border-radius: 0rem 0rem 0.5rem 0.5rem;
   z-index: 100;
 }

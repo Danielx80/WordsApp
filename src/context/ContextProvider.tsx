@@ -3,7 +3,6 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { AddAccessTokenInterceptor } from '../helpers/InterceptorsToken';
 import Context from './Context';
 
-
 interface Props {
 	children: JSX.Element | JSX.Element[]
 }

@@ -2,13 +2,16 @@
 export interface InputsModalsProps {
 	textTitle: string,
 	size: 'sm' | 'md' | 'lg' | 'xl',
-	type: 'text' | 'number' | 'time' | 'date'
-	placeholder?: string,
-	text?: string,
-	defaultValue?: string,
+	type: 'text' | 'number' | 'time' | 'date' | 'month'
 	onChange?: any,
-	disabled?: boolean,
+	placeholder?: string,
+	defaultValue?: string,
 	name?: string,
 	value?: string,
-	eventHandler?: React.ChangeEventHandler<HTMLInputElement>
+	required?: boolean | undefined
+	disabled?: boolean,
+	textId?: string
+	onBlur?: React.FocusEventHandler<HTMLInputElement> | undefined
+	errorMsg?: string,
+	hasError?: boolean,
 }

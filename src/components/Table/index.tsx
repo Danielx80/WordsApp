@@ -1,4 +1,6 @@
 import './tableStyles.css'
+import { TableContext } from '../../context/TableContext';
+import { getUsersData } from '../../hooks/useUsers';
 import { ChangeEvent, useState, useContext, useEffect } from 'react';
 import { v4 } from 'uuid'
 import { columns } from './utils/Columns'
@@ -14,26 +16,18 @@ import styles from './Table.module.css'
 import useTable from './hooks/useTable';
 import Modal from '../Modal/index';
 import ModalEditUser from '../Modal/ModalEditUser/ModalEditUser';
-import { TableContext } from '../../context/TableContext';
 
 
 const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
     const { state, setDeleteUser, } = useContext(TableContext)
     const { currentUser, isOpenModalEditUser } = state
     const [_isLoading, setIsLoading] = useState<boolean>(isLoading ? isLoading : false)
-    const [activeRow, setActiveRow] = useState(false)
     const [rowsPerPage, setRowsPerPage] = useState<number>(5)
     const [page, setPage] = useState(1)
     const [checkAll, setCheckAll] = useState(false)
     //hooks
-    // const { refetch } = getUsersData()
+    const { refetch } = getUsersData()
     const { slice, range } = useTable(data, page, rowsPerPage)
-
-    useEffect(() => {
-        // refetch()
-        console.log({ page, rowsPerPage });
-    }, [page, rowsPerPage])
-
 
     const handleRowperPage = (number: number) => {
         setRowsPerPage(number)
@@ -65,6 +59,12 @@ const Table = ({ data, isLoading }: { data: User[], isLoading?: boolean }) => {
     const handleCheckHeader = (e?: ChangeEvent<HTMLInputElement>) => {
         setCheckAll(e!.target.checked)
     }
+
+
+    useEffect(() => {
+        refetch()
+        console.log({ page, rowsPerPage });
+    }, [page, rowsPerPage])
 
     return (
         <>

@@ -8,7 +8,7 @@ interface LanguageProps {
   onClick?: MouseEventHandler<HTMLDivElement>
 }
 
-const LanguageButton = ({  flag, onClick }: LanguageProps) => {
+const LanguageButton = ({ flag, onClick }: LanguageProps) => {
   return (
     <div onClick={onClick} role='button' className={styles.contenedorLanguage}>
       <div className={styles.iconStyles}>

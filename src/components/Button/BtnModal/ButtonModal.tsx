@@ -4,7 +4,6 @@ import styles from './BtnModal.module.css'
 import { User } from '../../Table/interface/index';
 import { TableContext } from '../../../context/TableContext';
 
-
 interface RoundButtonModalProps {
     iconName?: string | ReactElement,
     onClick?: (user: User, isOpenModal: boolean) => void,

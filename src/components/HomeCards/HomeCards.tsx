@@ -1,4 +1,3 @@
-
 import { HomeCardsProps } from "./interface";
 import styles from "./HomeCards.module.css";
 import Avatar from "../Avatar";
@@ -17,8 +16,6 @@ const HomeCard = ({ header, body }: HomeCardsProps) => {
           </div>
           <p className={styles.textBody}>{body}</p>
         </div>
-        
-         
 
         <div className={styles.containerFooter}>
           <Avatar
@@ -29,7 +26,6 @@ const HomeCard = ({ header, body }: HomeCardsProps) => {
             textName="Martha Rodriguez"
           />
           <CircleIcon iconName="ListBullets" weight="fill"/>
-          
           
         </div>
       </div>

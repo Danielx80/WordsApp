@@ -1,4 +1,5 @@
-import { useContext, useState } from 'react';
+import { TableContext } from '../context/TableContext';
+import { useContext, useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import Context from "../context/Context";
 import styles from "../assets/css/users.module.css";
@@ -16,11 +17,11 @@ import { getUsersData } from '../hooks/useUsers';
 import { User } from '../components/Table/interface/index';
 import { BtnDeleteUser } from '../components/Button/BtnDeleteUser/BtnDeleteUser';
 import ModalDelete from '../components/Modal/ModalDelete/ModalDelete';
-import { TableContext } from '../context/TableContext';
 
 export const UsersPage = () => {
   const { state } = useContext(TableContext)
   const { deleteUser } = state
+  const [MessageShow, setMessageShow] = useState(false)
   const [isOpenModalNewUser, setOpenModalNewUser] = useState(false)
   const [OpenModalDeleteUser, setOpenModalDeleteUser] = useState(false)
   const [show, setShow] = useState(true);
@@ -29,6 +30,12 @@ export const UsersPage = () => {
   const { isAuthenticated } = useAuth0();
   const { data, isLoading, error, isError } = getUsersData()
 
+  useEffect(() => {
+    !isOpenModalNewUser
+      ? null
+      : setMessageShow(true)
+  }, [isOpenModalNewUser])
+
   if (!isReady || isLoading) {
     return <></>;
   }
@@ -36,9 +43,13 @@ export const UsersPage = () => {
 
   return (
     <>
-      <div className={styles.floatingBtn}>
-        <CreateMessage />
-      </div>
+
+      {
+        MessageShow &&
+        <div className={styles.floatingBtn}>
+          <CreateMessage />
+        </div>
+      }
 
       <div style={{ backgroundColor: "#F8FAFC" }}>
         <div className={styles.containerUser}>
@@ -65,13 +76,12 @@ export const UsersPage = () => {
               onChange={() => { }}
             />
 
-            <div className={styles.trashBtn}>
-              {
-                deleteUser && <BtnDeleteUser iconName="Trash" onClick={() => setOpenModalDeleteUser(true)} />
-
-              }
-            </div>
             <div className={styles.roundsButton}>
+
+              {
+                deleteUser?.id && <BtnDeleteUser iconName="Trash" onClick={() => setOpenModalDeleteUser(true)} />
+              }
+
               {
                 show ?
                   null :
@@ -133,6 +143,7 @@ export const UsersPage = () => {
 
       <Modal callback={(Open) => setOpenModalNewUser(Open)} isOpen={isOpenModalNewUser} >
         <ModalNewUser
+          onSubmit={() => { }}
           size='md'
           textHeader='New User'
         />

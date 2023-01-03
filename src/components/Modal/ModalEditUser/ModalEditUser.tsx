@@ -1,4 +1,4 @@
-import { User } from "phosphor-react";
+import { User, X } from "phosphor-react";
 import styles from "./ModalEditUser.module.css";
 import Avatar from "../../Avatar";
 import BasicBtn from "../../Button/BasicButton/BasicButton";
@@ -11,6 +11,7 @@ import { updateUserData } from '../../../hooks/useUsers';
 import { InputSelectTime } from '../../InputsModal/inputSelect/InputSelect';
 import { InputSelectIdiom } from '../../InputsModal/InputSelectIdioms/InputSelectIdiom';
 import { TableContext } from "../../../context/TableContext";
+import { CreateMessage } from '../../Message/MessageNewUser/index';
 
 
 const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps) => {
@@ -35,20 +36,28 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
 
   useEffect(() => setUser(_ => originalUser), [originalUser])
 
+  const [MessageShow, setMessageShow] = useState<boolean>(false)
+  // useEffect(() => {
+  //   !setIsOpenModalEditUser
+  //     ?
+  //     setMessageShow(false)
+  //     :
+  //     setMessageShow(true)
+  // }, [])
+
+
+
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setUser(
       { ...user, [e.target.name]: e.target.value }
     )
   }
 
-  // useEffect(() => {
-  //   setUser(originalUser)
-  // }, [originalUser])
-
   function handleSubmit() {
     mutate(user)
     setUser(initialValue)
     setIsOpenModalEditUser(false)
+    setMessageShow(true)
   }
 
   return (
@@ -57,11 +66,16 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
       className={`${styles[size]} ${styles.modalContainer}`}
     >
 
-      <div className={styles.containerTitle}>
-        <div className={styles.iconHeader}>
-          <User size="1.6rem" color="#F97316" />
+      <div className={styles.headerTitle}>
+        <div className={styles.containerTitle}>
+          <div className={styles.iconHeader}>
+            <User size="1.6rem" color="#F97316" />
+          </div>
+          <p className={styles.textHeader}>{textHeader}</p>
         </div>
-        <p className={styles.textHeader}>{textHeader}</p>
+        <div className={styles.closeIcon}>
+          <X size='2.8rem' onClick={() => setIsOpenModalEditUser(false)} />
+        </div>
       </div>
       <div className={styles.separationHeader}></div>
       <div className={styles.typeUser}>

@@ -22,5 +22,4 @@ InputModalComponent.args = {
 	type: 'text',
 	placeholder: 'user@user.com',
 	textTitle: 'Email*',
-	eventHandler: handleClick,
 }

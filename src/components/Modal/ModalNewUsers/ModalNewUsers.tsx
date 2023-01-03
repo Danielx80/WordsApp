@@ -1,21 +1,22 @@
-import { User } from "phosphor-react";
+import { User, X } from "phosphor-react";
 import styles from "./ModalNewUsers.module.css";
 import Avatar from "../../Avatar";
 import { ModalContext } from '../index';
 import BasicBtn from "../../Button/BasicButton/BasicButton";
-import { useContext, useState, ChangeEvent } from 'react';
+import { useContext, useState } from 'react';
 import { ModalNewProps } from "./interface";
 import InputModal from '../../InputsModal/Inputs';
 import ToggleButton from '../../Button/ToggleButton/ToggleButton';
-import { IUser } from "../../../interface/FetchAllUserResponse";
+import { IUser } from '../../../interface/FetchAllUserResponse';
 import { createUserData } from '../../../hooks/useUsers';
 import { InputSelectTime } from "../../InputsModal/inputSelect/InputSelect";
 import { InputSelectIdiom } from '../../InputsModal/InputSelectIdioms/InputSelectIdiom';
-import { RoundBtn } from '../../Button/RoundButton/RoundButton';
+import { useFormik, } from "formik";
+import { object, date, string } from "yup";
 
 const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
 
-  const initialValue = {
+  const initialValues = {
     date_of_birth: '',
     email: '',
     first_name: '',
@@ -26,35 +27,45 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
     telephone: '',
     time_zone: ''
   }
-  const [user, setUser] = useState<IUser>(initialValue)
+
   const { setIsOpenModal } = useContext(ModalContext)
-
+  const [user, setUser] = useState<IUser>(initialValues)
   const { mutate } = createUserData()
+  const validationSchema = object({
+    date_of_birth: date().default(new Date('2018-12-31')).max('2018-12-31').required('El año de nacimiento es obligatorio'),
+    email: string().email('El email no tiene formato valido').required('El email es obligatorio'),
+    first_name: string().required('El nombre es requerido').min(1, 'El nombre tiene que tener almenos un carácter').max(10, 'El nombre no pued esuperar los 10 carácteres'),
+    language: string().required('debes seleccionar un lenguaje'),
+    last_name: string().required('El apellido es requerido').min(1, 'El apellido tiene que tener almenos un carácter').max(20, ' El apellido no pued esuperar los 20 carácteres'),
+    telephone: string().min(10, 'minimo 10 carácteres').required('El telefono es requerido'),
+    time_zone: string().required('Debes seleccionar una zona horaria'),
+  })
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setUser(
-      { ...user, [e.target.name]: e.target.value }
-    )
+  const formik = useFormik<IUser>({
+    initialValues,
+    validationSchema,
+    onSubmit: user => {
+      mutate(user)
+      setUser(initialValues)
+      setIsOpenModal(false)
+    }
   }
-  function handleSubmit() {
-    mutate(user)
-    setUser(initialValue)
-    setIsOpenModal(false)
-
-  }
+  )
 
   return (
-    <>
+    <form onSubmit={formik.handleSubmit}>
       <div
         className={`${styles[size]} ${styles.modalContainer}`}
       >
-        <div className={styles.containerTitle}>
-          <div className={styles.iconHeader}>
-            <User size="1.6rem" color="#F97316" />
+        <div className={styles.headerTitle}>
+          <div className={styles.containerTitle}>
+            <div className={styles.iconHeader}>
+              <User size="1.6rem" color="#F97316" />
+            </div>
+            <p className={styles.textHeader}>{textHeader}</p>
           </div>
-          <p className={styles.textHeader}>{textHeader}</p>
-          <div className={styles.closeBtn}>
-            <RoundBtn iconName='X' weight="fill"/>
+          <div className={styles.closeIcon}>
+            <X size='2.8rem' onClick={() => setIsOpenModal(false)} />
           </div>
         </div>
         <div className={styles.separationHeader}></div>
@@ -79,7 +90,6 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
             <div className={styles.containerChangePictureBtn}>
               <BasicBtn
                 size="lg"
-
                 backgroundColor="white"
                 fontWeight={700}
                 borderColor="var(--neutral300)"
@@ -89,72 +99,89 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
             </div>
           </div>
           <InputModal
-            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
             name='first_name'
             size="lg"
-            value={user.first_name}
+            value={formik.values.first_name}
             type="text"
             placeholder="Jose"
-            textTitle="Name*" />
-
+            textTitle="Name*"
+            errorMsg={formik.errors.first_name}
+            hasError={formik.errors.first_name ? true : false}
+          />
           <InputModal
-            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
             name='last_name'
-            value={user.last_name}
+            value={formik.values.last_name}
             size="lg"
             type="text"
             placeholder="Ramirez"
             textTitle="Last Name*"
+            errorMsg={formik.errors.last_name}
+            hasError={formik.errors.last_name ? true : false}
           />
-
           <div className={styles.containerBirthdayPhone}>
             <InputModal
-              onChange={handleChange}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
               name='date_of_birth'
-              value={user.date_of_birth}
+              value={formik.values.date_of_birth}
               size="md"
               type="date"
               placeholder="Ramirez"
               textTitle="Birthday"
+              errorMsg={formik.errors.date_of_birth}
+              hasError={formik.errors.date_of_birth ? true : false}
             />
             <InputModal
-              onChange={handleChange}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
               name='telephone'
-              value={user.telephone}
+              value={formik.values.telephone}
               size="md"
               type="text"
               placeholder="(442) 212 2365"
               textTitle="Phone number*"
+              errorMsg={formik.errors.telephone}
+              hasError={formik.errors.telephone ? true : false}
             />
-
           </div>
         </div>
         <div className={styles.accountInformation}>
           <p className={styles.title}>ACCOUNT INFORMATION</p>
           <InputModal
-            onChange={handleChange}
+            textId="email-Error"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
             name='email'
-            value={user.email}
+            value={formik.values.email}
             size="lg"
             type="text"
             placeholder="joss.ramirez@company.mx"
             textTitle="Email*"
+            hasError={formik.errors.email ? true : false}
+            errorMsg={formik.errors.email}
           />
           <InputSelectTime
-            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
             name='time_zone'
-            value={user.time_zone}
+            value={formik.values.time_zone}
             size='xl'
             textTitle="TimeZone*"
           />
-
+          {formik.errors.time_zone && formik.touched.time_zone && <span>{formik.errors.time_zone}</span>}
           <InputSelectIdiom
-            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
             name='language'
-            value={user.language}
+            value={formik.values.language}
             textTitle='Language'
             size="sm"
           />
+          {formik.errors.language && formik.touched.language && <span>{formik.errors.language}</span>}
         </div>
         <div className={styles.separationFooter}></div>
         <div className={styles.inputContainer}>
@@ -172,7 +199,7 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
             text="Cancel"
           />
           <BasicBtn
-            onClick={handleSubmit}
+            // onClick={() => onSubmit}
             size="sm"
             backgroundColor="var(--celeste700)"
             fontWeight={700}
@@ -182,7 +209,7 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
           />
         </div>
       </div>
-    </>
+    </form>
 
   );
 };

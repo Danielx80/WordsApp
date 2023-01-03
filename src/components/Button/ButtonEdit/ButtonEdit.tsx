@@ -2,8 +2,6 @@ import {PencilSimple} from 'phosphor-react'
 import styles from './ButtonEdit.module.css'
 import { ButtonEditProps } from './Interface'
 
-
-
 const ButtonIcon = ({backgroundColor,size, text,onClick}:ButtonEditProps) => {
     
     return (

@@ -1,8 +1,6 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 import { User } from '../components/Table/interface/index';
 import { TableContextState } from './TableContextProvider';
-import { Action } from './TableReducer';
-
 
 interface TableContextProps {
     state:TableContextState,

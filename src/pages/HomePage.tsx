@@ -10,22 +10,23 @@ import Infoframe from "../components/Infoframe";
 import CardUser from "../components/CardUsers/CardUsers";
 import PaginationHome from "../components/PaginationHome/PaginationHome";
 import OptionsHome from '../components/PaginationHome/OptionsHome';
-
+import { getUsersData } from '../hooks/useUsers';
 
 export const HomePage = () => {
 
   const { isLoading, user } = useAuth0();
-
-  useEffect(() => {
-    console.log('isLoading')
-  }, [isLoading])
-
+  const { data, error, isError } = getUsersData()
   const [isOpenModal, setIsOpenModal] = useState(false)
-
-  useEffect(() => {
-    console.log(isOpenModal)
-  }, [isOpenModal])
-
+ 
+    useEffect(() => {
+      console.log('isLoading')
+    }, [isLoading])
+  
+  
+    useEffect(() => {
+      console.log(isOpenModal)
+    }, [isOpenModal])
+  
   if (isLoading) return <h1>Loading...</h1>;
 
   return (
@@ -122,6 +123,7 @@ export const HomePage = () => {
               <PaginationHome />
             </div>
             <div className={styles.containerCards}>
+
               <CardUser
                 name='Isaura Romero'
                 email='isa.romero@company.mx'
@@ -145,7 +147,7 @@ export const HomePage = () => {
                 email='erika.lopez@company.mx'
                 phone='+52 442 172 3740'
                 country='Mexico City (GMT-5)'
-              />
+              /> 
             </div>
             <div className={styles.containerActions}>
               <div className={styles.titleHome}>
