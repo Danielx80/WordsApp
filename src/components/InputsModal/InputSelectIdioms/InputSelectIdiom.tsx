@@ -1,5 +1,4 @@
 import styles from './InputSelectIidiom.module.css'
-import { ChangeEventHandler, useState } from 'react';
 
 export interface InputsSelectIdiomProps {
 	textTitle: string,
@@ -13,37 +12,40 @@ export interface InputsSelectIdiomProps {
 	onBlur?: React.FocusEventHandler<HTMLSelectElement> | undefined,
 	errorMsg?: string,
 	hasError?: boolean,
+	placeholder?: string,
 }
-export const InputSelectIdiom = ({ hasError, errorMsg, onBlur, textTitle, size, defaultValue, onChange, name, value }: InputsSelectIdiomProps) => {
-	const [focus, setFocus] = useState()
-
+export const InputSelectIdiom = ({ textTitle, size, defaultValue, onChange,
+	name, value, placeholder, onBlur, hasError, errorMsg }: InputsSelectIdiomProps) => {
 	return (
 		<div>
-			<label
-				style={{ color: hasError ? 'red' : 'var(--neutral800)' }}
-				className={`${styles.textTitle}`}
-				htmlFor="idiom"
-			>
-				{textTitle}
-			</label>
+			<label htmlFor="idiom"
+				className={`${styles.textTitle}`}>{textTitle}</label>
 			<select
-				onBlur={onBlur}
-				className={`${styles[size]} 
+				className={`
+				${styles[size]} 
 				${hasError && styles.emailError} 
 				${hasError ? styles.errorCont : styles.contenido}
-			 ${styles.borders} 
-			 ${styles.contenido}`}
+				${styles.borders} 
+				${styles.contenidoOne}`}
 				id='idiom'
 				value={value}
 				name={name}
 				defaultValue={defaultValue}
 				onChange={onChange}
-			>
-				<option className={`${styles.contenido}`} value='others'>Choose...</option>
+				style={{
+					color: value === placeholder ? 'var(--gray400)' : value ? 'var(--gray800)' : 'var(--gray400)'
+				}}
+				onBlur={onBlur} >
+
+				<option className={`${styles.contenido}`} value={placeholder}> {placeholder} </option>
 				<option className={`${styles.contenido}`} value='Spanish'>Spanish</option>
 				<option className={`${styles.contenido}`} value='English'>English</option>
 			</select>
 			<span>{errorMsg}</span>
 		</div>
 	)
+
+
+
+
 }

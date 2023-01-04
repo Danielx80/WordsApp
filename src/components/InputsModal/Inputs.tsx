@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { InputsModalsProps } from './interface/index';
 import styles from './Inputs.module.css'
 
-export const InputModal = ({ hasError, errorMsg, onBlur, textId, textTitle, size, type, placeholder, onChange, required, name, value, defaultValue, disabled }: InputsModalsProps) => {
+export const InputModal = ({ hasError, errorMsg, onBlur, textId, textTitle, size, type, placeholder, onChange, required, name, value, defaultValue, disabled, iconCalendar, subText }: InputsModalsProps) => {
 
 	const [focus, setFocus] = useState(false)
 
@@ -10,9 +10,11 @@ export const InputModal = ({ hasError, errorMsg, onBlur, textId, textTitle, size
 	return (
 		<div>
 			<label id={textId} className={`${styles.textTitle}`} style={{ color: hasError ? 'red' : 'var(--neutral800)' }} >{textTitle}</label>
+			<label id={textId} className={`${styles.textSubTitle} ${hasError ? 'red' : styles.textSubTitle}`}>{subText}</label>
+
 			<div className={`${styles[size]} ${hasError && styles.emailError} ${focus && styles.focusStyle} ${styles.borders}`} >
 				<input
-					className={`${styles.contenido} ${hasError ? styles.errorCont : styles.contenido }`}
+					className={`${styles.contenido} ${hasError ? styles.errorCont : styles.contenido } ${styles[iconCalendar]}`}
 					onFocus={() => setFocus(true)}
 					onBlur={() => { onBlur; setFocus(false) }}
 					id={textId}

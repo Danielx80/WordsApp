@@ -1,14 +1,15 @@
-
 .containerWords {
-	padding: 3.6rem;
+    max-width: 111.6rem;
+    padding: 3.6rem;
 	margin: 0 auto;
   }
   
-  .containerHeaderWords {
-	max-width: 111.6rem;
-  }
 .containerBody {
-	margin-top: 24px;
-	margin-left: 195px;
-	margin-right: 129px;
+	margin-top: 2.4rem;
+	margin-left: 19.5rem;
+	margin-right: 12.9rem;
+}
+
+.boxCategoryStyles{
+    margin-top: 2.4rem;
 }

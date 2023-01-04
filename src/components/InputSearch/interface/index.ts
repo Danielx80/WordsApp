@@ -1,9 +1,10 @@
-
 export interface InputSearchsProps {
 	size: 'sm' | 'md' | 'lg',
-	type: 'text',
+	type: 'button' | 'checkbox'|'text',
 	icon?: string,
 	text?: string,
-	onChange?: any,
-	eventHandler?: React.ChangeEventHandler<HTMLInputElement>
+	value?: string,
+	background?: string,
+	eventHandler?: React.ChangeEventHandler<HTMLInputElement>,
+	onChange: any,
 }

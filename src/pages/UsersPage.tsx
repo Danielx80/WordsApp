@@ -8,7 +8,6 @@ import BasicBtn from "../components/Button/BasicButton/BasicButton";
 import Table from "../components/Table";
 import Modal from "../components/Modal";
 import { SelectAll } from "../components/Button/SelectAll/SelectAll";
-import InputSearch from '../components/InputSearch/InputSearch';
 import { RoundBtn } from '../components/Button/RoundButton/RoundButton';
 import CardsTable from '../components/CardUserTable/CardTable';
 import ModalNewUser from '../components/Modal/ModalNewUsers/ModalNewUsers';
@@ -17,6 +16,7 @@ import { getUsersData } from '../hooks/useUsers';
 import { User } from '../components/Table/interface/index';
 import { BtnDeleteUser } from '../components/Button/BtnDeleteUser/BtnDeleteUser';
 import ModalDelete from '../components/Modal/ModalDelete/ModalDelete';
+import { InputSearch } from '../components/InputSearch/InputSearch';
 
 export const UsersPage = () => {
   const { state } = useContext(TableContext)
@@ -40,17 +40,14 @@ export const UsersPage = () => {
     return <></>;
   }
 
-
   return (
     <>
-
       {
         MessageShow &&
         <div className={styles.floatingBtn}>
           <CreateMessage />
         </div>
       }
-
       <div style={{ backgroundColor: "#F8FAFC" }}>
         <div className={styles.containerUser}>
           <div className={styles.containerHeaderUsers}>
@@ -68,8 +65,9 @@ export const UsersPage = () => {
             <div className={styles.spaceText}></div>
           </div>
           <div className={styles.containerSearch}>
-            <InputSearch
+          <InputSearch
               size="md"
+              background="var(--slate100)"
               type="text"
               text="Search Users by name or keyword..."
               icon="MagnifyingGlass"

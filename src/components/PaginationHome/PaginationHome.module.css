@@ -16,10 +16,11 @@
 }
 
 .containerButton {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 0.4rem;
+  padding: 0.8rem;
   width: 3.6rem;
   height: 3.6rem;
   background: #ffffff;

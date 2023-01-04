@@ -191,8 +191,8 @@
 html,
 p {
 	font-size: 85%;
-	/* font-size: 62.5%; */
-	font-family: 'Satoshi-Variable';
+	font-size: 62.5%;
+	/* font-family: 'Satoshi-Variable'; */
 }
 
 p {

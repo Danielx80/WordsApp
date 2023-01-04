@@ -142,6 +142,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
             // value={user.date_of_birth}
             size="md"
             type="date"
+            subText=" (Optional)"
             placeholder='22 Nov 1990'
             textTitle="Birthday"
           />
@@ -175,6 +176,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
           name='time_zone'
           value={user.time_zone}
           // value={user.time_zone}
+          placeholder='Choose...'
           size='xl'
           textTitle="TimeZone"
         />
@@ -185,6 +187,7 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
           value={user.language}
           // value={user.language}
           textTitle='Language'
+          placeholder="Choose..."
           size="sm"
         />
 

@@ -7,7 +7,6 @@ const Links = () => {
    const { pathname } = useLocation()
    console.log(pathname);
 
-
    return (
       <div className={styles.containerLinks}>
          <ContainerLink

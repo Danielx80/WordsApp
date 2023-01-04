@@ -11,12 +11,13 @@
 	border: 0;
 	border-radius: 0.4rem;
 }
-
 .xl {
+
 	width: 59.2rem;
 	height: 4.2rem;
 	border-radius: 0.4rem;
 }
+
 
 .xl>.contenido {
 	width: 59.2rem;
@@ -36,6 +37,39 @@
 	font-size: 1.6rem;
 	margin-top: 0.8rem;
 	margin-bottom: 0.6rem;
+}
+
+.contenidoOne {
+	background: var(--white);
+	padding: 0.5rem;
+	outline: none;
+	font-family: var(--fontA);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.6rem;
+	line-height: 2rem;
+	appearance: none;
+	background-image: url('https://res.cloudinary.com/dtwp0t9tn/image/upload/v1672771261/Vector_ut48pm.svg');
+	background-position: right 1.35rem center;
+	background-repeat: no-repeat;
+	outline: 0.2rem solid var(--neutral300);
+	border: 0;
+	margin-top: 0.8rem;
+	margin-bottom: 0.6rem;
+
+}
+.contenidoOne>option{
+	color: var(--gray800);
+}
+.contenidoTwo{
+	background: var(--white);
+	padding: 0.5rem;
+	outline: none;
+	font-family: var(--fontA);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.6rem;
+	line-height: 2rem;
 }
 
 .textTitle {

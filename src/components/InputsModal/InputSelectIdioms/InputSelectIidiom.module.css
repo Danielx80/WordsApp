@@ -11,12 +11,13 @@
 	border: 0;
 	border-radius: 0.4rem;
 }
-
 .xl {
+
 	width: 59.2rem;
 	height: 4.2rem;
 	border-radius: 0.4rem;
 }
+
 
 .xl>.contenido {
 	width: 59.2rem;
@@ -24,20 +25,64 @@
 	outline: none;
 	border: 0;
 	border-radius: 0.4rem;
+
+}
+
+.borders {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	line-height: 2rem;
+	/* color: #6B7280; */
+	padding: 1rem;
+	outline: none;
+	background: var(--white);
+	border: 0.1rem solid var(--neutral300);
 }
 
 .contenido {
-	flex-direction: row;
 	border: 0;
 	outline: 0.2rem solid var(--neutral300);
 	padding: 0.7rem;
 	font-family: var(--fontA);
 	font-style: normal;
 	font-weight: 400;
-	display: flex;
 	font-size: 1.6rem;
 	margin-top: 0.8rem;
 	margin-bottom: 0.6rem;
+}
+
+.contenidoOne {
+	background: var(--white);
+	outline: none;
+	font-family: var(--fontA);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.6rem;
+	line-height: 2rem;
+	appearance: none;
+	background-image: url('https://res.cloudinary.com/dtwp0t9tn/image/upload/v1672771261/Vector_ut48pm.svg');
+	background-position: right 1.35rem center;
+	background-repeat: no-repeat;
+	outline: 0.2rem solid var(--neutral300);
+	border: 0;
+	margin-top: 0.8rem;
+	margin-bottom: 0.6rem;
+}
+
+.contenidoOne>option {
+	color: var(--neutral800);
+}
+
+.contenidoTwo{
+	background: var(--white);
+	padding: 0.5rem;
+	outline: none;
+	font-family: var(--fontA);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.6rem;
+	line-height: 2rem;
 }
 
 .textTitle {

@@ -3,20 +3,11 @@ import { InputSearchsProps } from './interface/index';
 import styles from './InputSearch.module.css'
 
 
-export const InputSearch = ({ size, type, eventHandler, text, icon }: InputSearchsProps) => {
+export const InputSearch = ({ size, type, eventHandler, text, icon, background }: InputSearchsProps) => {
   return (
-    <div className={`${styles[size]} ${styles.borders}`} >
+    <div className={`${styles[size]} ${styles.borders}`} style={{background:background}} >
       <Icon color='var(--gray500)' iconName={icon} size='1.6rem' />
-      <input  className={`${styles.contenido}`} type='text' onChange={eventHandler} placeholder={text} />
+      <input className={`${styles.contenido}`} style={{background:background}} type={type} onChange={eventHandler} placeholder={text} />
     </div>
   )
-}
-
-export default InputSearch
-InputSearch.defaultProps = {
-  type: 'text',
-  text: 'Search Input...',
-  icon: 'MagnifyingGlass',
-  size: 'md',
-  textTitle: 'Email*',
 }

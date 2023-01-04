@@ -10,12 +10,10 @@ import Infoframe from "../components/Infoframe";
 import CardUser from "../components/CardUsers/CardUsers";
 import PaginationHome from "../components/PaginationHome/PaginationHome";
 import OptionsHome from '../components/PaginationHome/OptionsHome';
-import { getUsersData } from '../hooks/useUsers';
 
 export const HomePage = () => {
 
   const { isLoading, user } = useAuth0();
-  const { data, error, isError } = getUsersData()
   const [isOpenModal, setIsOpenModal] = useState(false)
  
     useEffect(() => {

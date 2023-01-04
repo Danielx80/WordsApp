@@ -1,0 +1,98 @@
+.containerHeader {
+    height: 35rem;
+    width: 111.6rem;
+    padding: 2.4rem;
+    background: radial-gradient(77.6% 669.29% at 22.4% 50%, rgba(255, 237, 213, 0.7) 0%, rgba(255, 237, 213, 0) 100%);
+    border: 0.1rem solid var(--neutral200);
+    border-radius: 0.8rem;
+}
+
+.glossary {
+    font-family: var(--fontA);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 3.8rem;
+    color: var(--neutral800);
+}
+
+.containerTop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem;
+    gap: 1.6rem;
+    isolation: isolate;
+    width: 106.8rem;
+    height: 4rem;
+}
+
+.space {
+    width: 106.8rem;
+    height: 0.1rem;
+    margin-top: 1.6rem;
+    background: var(--neutral200);
+}
+
+.tittle {
+    width: 53.4rem;
+    height: 8.6rem;
+    font-family: var(--fontB);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 4.3rem;
+    margin-top: 2.4rem;
+    color: #000000;
+}
+
+.body {
+    margin-top: 1.6rem;
+    width: 53.4rem;
+    height: 4.4rem;
+
+    font-family: var(--fontA);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    color: var(--neutral800);
+}
+
+.elementsFooter {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0rem;
+    gap: 1.2rem;
+    width: 53.4rem;
+    height: 4rem;
+}
+
+.containerBodyGlossary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0rem;
+    gap: 12.4rem;
+    height: 19.8rem;
+}
+
+.containerBodyWords {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0rem;
+    gap: 13.4rem;
+    height: 19.8rem;
+}
+
+.positionImg {
+    margin-top: 3.6rem;
+}
+
+.positionImgWords {
+    margin-top: 4.3rem;
+}
