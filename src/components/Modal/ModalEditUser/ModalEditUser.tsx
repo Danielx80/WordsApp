@@ -34,33 +34,31 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
   const { mutate } = updateUserData()
   console.log(user);
 
-  useEffect(() => setUser(_ => originalUser), [originalUser])
-
+  
   const [MessageShow, setMessageShow] = useState<boolean>(false)
   // useEffect(() => {
-  //   !setIsOpenModalEditUser
-  //     ?
-  //     setMessageShow(false)
-  //     :
-  //     setMessageShow(true)
-  // }, [])
-
-
-
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setUser(
-      { ...user, [e.target.name]: e.target.value }
-    )
-  }
-
-  function handleSubmit() {
-    mutate(user)
-    setUser(initialValue)
-    setIsOpenModalEditUser(false)
-    setMessageShow(true)
-  }
-
-  return (
+    //   !setIsOpenModalEditUser
+    //     ?
+    //     setMessageShow(false)
+    //     :
+    //     setMessageShow(true)
+    // }, [])
+    
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
+      setUser(
+        { ...user, [e.target.name]: e.target.value }
+        )
+      }
+      
+      function handleSubmit() {
+        mutate(user)
+        setUser(initialValue)
+        setIsOpenModalEditUser(false)
+        setMessageShow(true)
+      }
+      useEffect(() => setUser(_ => originalUser), [originalUser])
+      
+      return (
 
     <div
       className={`${styles[size]} ${styles.modalContainer}`}

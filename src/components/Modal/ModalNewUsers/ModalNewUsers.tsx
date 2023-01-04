@@ -171,8 +171,9 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
             value={formik.values.time_zone}
             size='xl'
             textTitle="TimeZone*"
-          />
-          {formik.errors.time_zone && formik.touched.time_zone && <span>{formik.errors.time_zone}</span>}
+            hasError={formik.errors.time_zone ? true : false}
+            errorMsg={formik.errors.time_zone}
+          /> 
           <InputSelectIdiom
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -180,8 +181,9 @@ const ModalNewUser = ({ size, textHeader }: ModalNewProps) => {
             value={formik.values.language}
             textTitle='Language'
             size="sm"
+            hasError={formik.errors.language ? true : false}
+            errorMsg={formik.errors.language}
           />
-          {formik.errors.language && formik.touched.language && <span>{formik.errors.language}</span>}
         </div>
         <div className={styles.separationFooter}></div>
         <div className={styles.inputContainer}>
