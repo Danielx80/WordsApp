@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof InputSelectTime> = (args) => {
 
 export const InputSelectComponent = Template.bind({})
 InputSelectComponent.args = {
-	size: 'sm',
+	size: 'xl',
 	textTitle: 'Timezone*',
 	eventHandler: handleClick,
 }

@@ -4,10 +4,8 @@
     align-items: flex-start;
     cursor: pointer;
     border-radius: 50%;
+    padding: 100px;
     background: white;
-}
-.containerButton:hover{
-    background: #F8FAFC;
 }
 
 .propsIcon{

@@ -1,25 +1,25 @@
-
-
 export interface Users {
     data: IUser[];
 }
-export interface Image {
-    file_name: string;
-    update_at: string;
-}
+/* export interface Image {
+    file_name:  string;
+    updated_at: string;
+} */
 
 export interface IUser {
-    date_of_birth: string;
+    birthday?: string;
     email?: string;
-    first_name?: string;
-    id: string;
-    id_auth0?: string;
+    name?: string;
+    id?: string;
+    auth0_id?: string;
+    lastname?: string;
+    middlename?: string;
+    second_lastname?:string
+    phone?: string;
+    timezone?: string;
     language?: string;
-    last_name?: string;
-    second_last_name?: string;
-    second_name?: string;
-    telephone: string;
-    time_zone?: string;
+    image?:string;
+    is_admin?:boolean;
 }
 
 // Converts JSON strings to/from your types

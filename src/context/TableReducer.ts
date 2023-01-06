@@ -4,6 +4,7 @@ import { TableContextState } from "./TableContextProvider";
 export type Action =
     |   {type:'setCurrentUser', payload:{currentUser:User}}
     |   {type:'setIsOpenModalEditUser', payload:{isOpenModalEditUser:boolean}}
+    |   {type:'setIsOpenModalNewCategory',payload:{isOpenModalNewCategory:boolean}}
     |   {type:'setDeleteUser', payload:{deleteUser:User | undefined}}
 
 export const TableReducer = (state:TableContextState, action:Action):TableContextState=>{
@@ -18,6 +19,11 @@ export const TableReducer = (state:TableContextState, action:Action):TableContex
                 ...state,
                 isOpenModalEditUser:action.payload.isOpenModalEditUser
             };
+            case 'setIsOpenModalNewCategory':
+                return{
+                    ...state,
+                    isOpenModalNewCategory:action.payload.isOpenModalNewCategory
+                };
         case 'setDeleteUser':
             return{
                 ...state,

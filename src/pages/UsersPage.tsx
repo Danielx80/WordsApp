@@ -12,42 +12,49 @@ import { RoundBtn } from '../components/Button/RoundButton/RoundButton';
 import CardsTable from '../components/CardUserTable/CardTable';
 import ModalNewUser from '../components/Modal/ModalNewUsers/ModalNewUsers';
 import { CreateMessage } from '../components/Message/MessageNewUser/index';
-import { getUsersData } from '../hooks/useUsers';
+import { getUsersData, getUsersDataCards } from '../hooks/useUsers';
 import { User } from '../components/Table/interface/index';
 import { BtnDeleteUser } from '../components/Button/BtnDeleteUser/BtnDeleteUser';
 import ModalDelete from '../components/Modal/ModalDelete/ModalDelete';
 import { InputSearch } from '../components/InputSearch/InputSearch';
+import { MessageNewUser } from '../components/Message/MessageNewUser/MessageNewUser';
 
 export const UsersPage = () => {
   const { state } = useContext(TableContext)
   const { deleteUser } = state
   const [MessageShow, setMessageShow] = useState(false)
-  const [isOpenModalNewUser, setOpenModalNewUser] = useState(false)
-  const [OpenModalDeleteUser, setOpenModalDeleteUser] = useState(false)
+  const [isOpenModalNewUser, setOpenModalNewUser] = useState<boolean>(false)
+  const [OpenModalDeleteUser, setOpenModalDeleteUser] = useState<boolean>(false)
   const [show, setShow] = useState(true);
-  const [checkAll, setCheckAll] = useState(false)
+  const [checkAll, setCheckAll] = useState<boolean>(false)
   const { isReady } = useContext(Context);
   const { isAuthenticated } = useAuth0();
-  const { data, isLoading, error, isError } = getUsersData()
+  const { data, refetch } = getUsersDataCards();
+  const [Message, setMessage] = useState(false)
+  const [successModal, setsuccessModal] = useState<{success: boolean, message: string}>()
+
+  const handleSuccessModal = (success: boolean, message: string)=> {
+    setsuccessModal({success, message})
+  }
 
   useEffect(() => {
     !isOpenModalNewUser
-      ? null
-      : setMessageShow(true)
+      ?
+      null
+      :
+      setMessage(true)
   }, [isOpenModalNewUser])
 
-  if (!isReady || isLoading) {
+  useEffect(() => {
+  }, [show]);
+
+  if (!isReady) {
     return <></>;
   }
 
   return (
     <>
-      {
-        MessageShow &&
-        <div className={styles.floatingBtn}>
-          <CreateMessage />
-        </div>
-      }
+    
       <div style={{ backgroundColor: "#F8FAFC" }}>
         <div className={styles.containerUser}>
           <div className={styles.containerHeaderUsers}>
@@ -65,7 +72,7 @@ export const UsersPage = () => {
             <div className={styles.spaceText}></div>
           </div>
           <div className={styles.containerSearch}>
-          <InputSearch
+            <InputSearch
               size="md"
               background="var(--slate100)"
               type="text"
@@ -77,7 +84,7 @@ export const UsersPage = () => {
             <div className={styles.roundsButton}>
 
               {
-                deleteUser?.id && <BtnDeleteUser iconName="Trash" onClick={() => setOpenModalDeleteUser(true)} />
+                deleteUser && <BtnDeleteUser iconName="Trash" onClick={() => setOpenModalDeleteUser(true)} />
               }
 
               {
@@ -117,19 +124,19 @@ export const UsersPage = () => {
           {
             show ?
               <div className={styles.containerTable}>
-                <Table data={data.data} />
+                <Table />
               </div>
               :
               <div className={styles.containerCard}>
                 {data &&
-                  data.data.map((item: User) => (
+                  data.users.map((item: User) => (
                     <CardsTable
                       key={item.id}
                       checked={checkAll}
-                      name={`${item.first_name} ${item.last_name} `}
+                      name={`${item.name} ${item.lastname} `}
                       email={item.email}
-                      phone={item.telephone}
-                      country={item.time_zone}
+                      phone={item.phone}
+                      country={item.timezone}
                     />
                   ))
                 }
@@ -137,6 +144,7 @@ export const UsersPage = () => {
           }
 
         </div>
+      
       </div>
 
       <Modal callback={(Open) => setOpenModalNewUser(Open)} isOpen={isOpenModalNewUser} >
@@ -144,8 +152,15 @@ export const UsersPage = () => {
           onSubmit={() => { }}
           size='md'
           textHeader='New User'
+          onSuccess={handleSuccessModal}
         />
       </Modal >
+      {
+        successModal?.success &&
+        <MessageNewUser 
+        message={successModal.message}
+        onClick={()=>{setsuccessModal({success: false, message:''})}}/> //resetear el estado
+      }
       <Modal callback={(Open) => setOpenModalDeleteUser(Open)} isOpen={OpenModalDeleteUser}>
         <div className={styles.deleteModal}>
           <ModalDelete

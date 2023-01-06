@@ -7,7 +7,7 @@ export interface InputsModalsProps {
 	placeholder?: string,
 	defaultValue?: string,
 	name?: string,
-	value?: string,
+	value?: string | undefined,
 	required?: boolean | undefined
 	disabled?: boolean,
 	textId?: string

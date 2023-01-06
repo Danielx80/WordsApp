@@ -9,4 +9,5 @@ export interface BasicButtonProps {
     colorText?: string,
     text?: string,
     onClick?: MouseEventHandler<HTMLButtonElement>,
+    onChange?: React.FormEventHandler<HTMLButtonElement> | undefined
 }

@@ -1,13 +1,13 @@
-import React from 'react'
-import { User } from '../../Table/interface/index';
 import styles from './CheckBox.module.css'
-import { useContext, useEffect, useState } from 'react';
+import { User } from '../../Table/interface/index';
 import { TableContext } from '../../../context/TableContext';
+import { useContext, useState, useEffect } from 'react';
+
 
 interface CheckBoxProps {
 	defaultChecked?: boolean,
 	onChange: (e: React.ChangeEvent<HTMLInputElement> | undefined) => void
-	user: User | undefined
+	user?: User 
 }
 
 export const CheckBox = ({ defaultChecked, onChange, user }: CheckBoxProps) => {
@@ -23,11 +23,7 @@ export const CheckBox = ({ defaultChecked, onChange, user }: CheckBoxProps) => {
 		} else {
 			setIsCheked(false)
 		}
-		// debugger
-		console.log(user?.id);
-		console.log(deleteUser?.id)
-		console.log(isCheked);
-
+		
 		
 	}, [deleteUser, user])
 

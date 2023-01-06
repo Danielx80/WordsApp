@@ -20,4 +20,8 @@ const Template: ComponentStory<typeof RoundBtn> = (args) => {
 export const RoundBtnComponent = Template.bind({})
 RoundBtnComponent.args = {
 	iconName: 'ListBullets',
+	weight: 'duotone',
+	height: 4,
+	width: 3,
+	padding: 1
 }

@@ -1,20 +1,20 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
-import ModalNewUser from '../../components/Modal/ModalNewUsers/ModalNewUsers';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ExampleModalNewUser } from '../../components/Modal/ModalExamples/ExampleModalNewUser';
 
-// export default {
-//     title: 'Modal',
-//     component: ModalNewUser
-// } as ComponentMeta<typeof ModalNewUser>
+export default {
+    title: 'Modal',
+    component: ExampleModalNewUser
+} as ComponentMeta<typeof ExampleModalNewUser>
 
 
 
-// const Template: ComponentStory<typeof ModalNewUser> = (args) => {
+const Template: ComponentStory<typeof ExampleModalNewUser> = (args) => {
 
-//     return <ModalNewUser {...args} />
-// }
+    return <ExampleModalNewUser {...args} />
+}
 
-// export const ModalNewUserComponent = Template.bind({})
-// ModalNewUserComponent.args = {
-//     size: 'md',
-//     textHeader: 'New User'
-// }
+export const ExampleModalNewUserComponent = Template.bind({})
+ExampleModalNewUserComponent.args = {
+    size: 'md',
+    textHeader: 'New User'
+}

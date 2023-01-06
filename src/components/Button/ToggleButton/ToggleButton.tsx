@@ -6,9 +6,10 @@ interface ToggleButtonProps {
   onClick?: MouseEventHandler<HTMLDivElement>
   values: string[]
   onChange?: (selected: { isActive: boolean, value: String }) => void
+  onBlur?: React.FocusEventHandler<HTMLDivElement> | undefined
 }
 
-export const ToggleButton = ({ values, onChange }: ToggleButtonProps) => {
+export const ToggleButton = ({ values, onChange, onBlur }: ToggleButtonProps) => {
 
   const [isActive, setIsActive] = useState<boolean>(true)
   useEffect(() => {
@@ -16,7 +17,7 @@ export const ToggleButton = ({ values, onChange }: ToggleButtonProps) => {
   }, [isActive])
 
   return (
-    <div className={styles.container} onClick={() => setIsActive(!isActive)}>
+    <div onBlur={onBlur} className={styles.container} onClick={() => setIsActive(!isActive)}>
       <div className={styles.containerTwo}>
         <Body2
           variant='bold'

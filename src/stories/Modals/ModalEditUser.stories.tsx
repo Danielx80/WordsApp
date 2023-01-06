@@ -1,20 +1,18 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react'
-import ModalEditUser from '../../components/Modal/ModalEditUser/ModalEditUser'
+import { ExampleModalEditUser } from '../../components/Modal/ModalExamples/ExampleModalEditUser';
 
-// export default {
-//     title:'Modal',
-//     component: ModalEditUser
-// } as ComponentMeta<typeof ModalEditUser>
+export default {
+    title:'Modal',
+    component: ExampleModalEditUser
+} as ComponentMeta<typeof ExampleModalEditUser>
 
+const Template:ComponentStory<typeof ExampleModalEditUser> = (args) => {
 
+    return<ExampleModalEditUser {...args}/>
+}
 
-// const Template:ComponentStory<typeof ModalEditUser> = (args) => {
-
-//     return<ModalEditUser {...args}/>
-// }
-
-// export const ModalEditUserComponent = Template.bind({})
-// ModalEditUserComponent.args={
-//     size:'md',
-//     textHeader:'Edit User'
-// }
+export const ExampleModalEditUserComponent = Template.bind({})
+ExampleModalEditUserComponent.args={
+    size:'md',
+    textHeader:'Edit User'
+}

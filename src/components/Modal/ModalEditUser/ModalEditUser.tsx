@@ -17,48 +17,44 @@ import { CreateMessage } from '../../Message/MessageNewUser/index';
 const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps) => {
 
   const initialValue = {
-    date_of_birth: '',
+    auth0_id: '',
+    birthday: '',
     email: '',
-    first_name: '',
     id: '',
+    image: '',
+    is_admin: true,
     language: '',
-    last_name: '',
-    second_last_name: '',
-    second_name: '',
-    telephone: '',
-    time_zone: ''
+    lastname: '',
+    middlename: '',
+    name: '',
+    phone: '',
+    timezone: '',
   }
 
   const [user, setUser] = useState<IUser>(originalUser ?? initialValue)
   const { setIsOpenModalEditUser } = useContext(TableContext)
   const { mutate } = updateUserData()
-  console.log(user);
 
-  
-  const [MessageShow, setMessageShow] = useState<boolean>(false)
-  // useEffect(() => {
-    //   !setIsOpenModalEditUser
-    //     ?
-    //     setMessageShow(false)
-    //     :
-    //     setMessageShow(true)
-    // }, [])
-    
-    function handleChange(e: ChangeEvent<HTMLInputElement>) {
-      setUser(
-        { ...user, [e.target.name]: e.target.value }
-        )
-      }
-      
-      function handleSubmit() {
-        mutate(user)
-        setUser(initialValue)
-        setIsOpenModalEditUser(false)
-        setMessageShow(true)
-      }
-      useEffect(() => setUser(_ => originalUser), [originalUser])
-      
-      return (
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setUser(
+      { ...user, [e.target.name]: e.target.value }
+    )
+  }
+
+  function handleSubmit() {
+    mutate({ ...user, is_admin: user.is_admin })
+    setUser(initialValue)
+    setIsOpenModalEditUser(false)
+  }
+
+  function handleTypeUserChange({ isActive }: { isActive: boolean }) {
+    console.log('handleType', isActive);
+    setUser({ ...user, is_admin: isActive })
+
+  }
+  useEffect(() => setUser(_ => originalUser), [originalUser])
+
+  return (
 
     <div
       className={`${styles[size]} ${styles.modalContainer}`}
@@ -80,7 +76,10 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
         <div className={styles.textTypeUser}>
           What type of user do you want to create?
         </div>
-        <ToggleButton values={['Admin', 'Editor']} />
+        <ToggleButton
+          values={['Admin', 'Editor']}
+          onChange={handleTypeUserChange}
+        />
       </div>
       <div className={styles.containerPersonalInformation}>
         <div className={styles.personalInfoText}>
@@ -114,9 +113,9 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
         </div>
 
         <InputModal
-          value={user.first_name}
+          value={user.name}
           onChange={handleChange}
-          name='first_name'
+          name='name'
           // value={user.first_name}
           size="lg"
           type="text"
@@ -124,9 +123,9 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
           textTitle="Name*"
         />
         <InputModal
-          value={user.last_name}
+          value={user.lastname}
           onChange={handleChange}
-          name='last_name'
+          name='lastname'
           // value={user.last_name}
           size="lg"
           type="text"
@@ -136,9 +135,9 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
 
         <div className={styles.containerBirthdayPhone}>
           <InputModal
-            value={user.date_of_birth}
+            value={user.birthday}
             onChange={handleChange}
-            name='date_of_birth'
+            name='birthday'
             // value={user.date_of_birth}
             size="md"
             type="date"
@@ -147,9 +146,9 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
             textTitle="Birthday"
           />
           <InputModal
-            value={user.telephone}
+            value={user.phone}
             onChange={handleChange}
-            name='telephone'
+            name='phone'
             // value={user.telephone}
             size="md"
             type="text"
@@ -173,8 +172,8 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
         />
         <InputSelectTime
           onChange={handleChange}
-          name='time_zone'
-          value={user.time_zone}
+          name='timezone'
+          value={user.timezone}
           // value={user.time_zone}
           placeholder='Choose...'
           size='xl'

@@ -55,7 +55,7 @@
 	outline: 0.2rem solid var(--neutral300);
 	border: 0;
 	margin-top: 0.8rem;
-	margin-bottom: 0.6rem;
+	margin-bottom: 2.3rem;
 
 }
 .contenidoOne>option{
@@ -94,4 +94,9 @@
 
 .emailError {
 	outline: 0.2rem solid var(--red500);
+}
+
+.container {
+	flex-direction: column;
+	display: flex;
 }

@@ -18,23 +18,23 @@ export const columns: ColumnsProps[] = [
         width: '25%',
         renderCell: (params, action) =>
             <div className={styles.containerAvatar}>
-                <AvatarUsers size='md' text={params.first_name}
+                <AvatarUsers size='md' text={params.name}
                     backgroundColor='var(--teal500)'
-                    createBy={`${params.first_name} ${params.last_name}`}
+                    createBy={`${params.name} ${params.lastname}`}
                     emailUser={params.email} />
             </div>
     },
     {
-        field: 'phone' ,
+        field: 'phone',
         headerName: 'Phone',
         width: '13%',
-        renderCell: (params, action) => <p className={styles.styleBody}>{params.telephone}</p>
+        renderCell: (params, action) => <p className={styles.styleBody}>{params.phone}</p>
     },
     {
         field: 'birthday',
         headerName: 'Birthday',
         width: '13%',
-        renderCell: (params, action) => <p className={styles.styleBody}>{params.date_of_birth}</p>
+        renderCell: (params, action) => <p className={styles.styleBody}>{params.birthday}</p>
     },
     {
         field: 'language',
@@ -47,13 +47,15 @@ export const columns: ColumnsProps[] = [
         headerName: 'TimeZone',
         width: '24%',
 
-        renderCell: (params, action) => <div className={styles.styleBody}><TimeZone size="md" time={params.time_zone} zone={params.time_zone} /></div>
+        renderCell: (params, action) => <div className={styles.styleBody}><TimeZone size="md" time={params.timezone} zone={params.timezone} /></div>
     }
     ,
     {
         field: 'actions',
         headerName: '',
         width: '2%',
-        renderCell: (params, action) => <div className={styles.containerEdit}><RoundButtonModal user={params as User} iconName='Pencil' /></div>
+        renderCell: (params, action) => <div className={styles.containerAvatar}>
+            <RoundButtonModal iconName="Pencil" user={params as User} />
+        </div>
     }
 ]

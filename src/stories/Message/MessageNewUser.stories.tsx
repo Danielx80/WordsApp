@@ -9,9 +9,7 @@ export default {
 
 const handleClick = (e: MouseEvent<HTMLButtonElement>)=>{
     console.log(e);
-    
 }
-
 
 const Template:ComponentStory<typeof MessageNewUser> = (args) => {
 
@@ -20,6 +18,6 @@ const Template:ComponentStory<typeof MessageNewUser> = (args) => {
 
 export const MessageNewUserComponent = Template.bind({})
 MessageNewUserComponent.args={
-    onClick:handleClick
-    
+    onClick:handleClick,
+    message:"Great! Youve created new user",
 }
