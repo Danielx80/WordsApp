@@ -10,10 +10,9 @@
 
 .border {
 	position: absolute;
-	padding-top: 1.8rem;
-	padding-bottom: 10.1rem;
-	padding-left: 2.8rem;
-	padding-right: 2.5rem;
+	margin-top: 1.8rem;
+	margin-bottom: 10.1rem;
+	
 }
 
 .border2 {
@@ -31,19 +30,21 @@
 }
 
 .titleH4 {
-	width: 11.8rem;
-	height: 2.8rem;
+	margin-left: 2.8rem;
+	margin-right: 2.5rem;
 	font-family: var(--fontA);
 	font-style: normal;
 	font-weight: 700;
 	font-size: 2rem;
 	line-height: 2.8rem;
-	text-align: center;
+	margin-top: 0.8rem;
 	color: var(--neutral800);
 
 }
 
 .textoContent {
+	margin-left: 2.8rem;
+	margin-right: 2.5rem;
 	font-family: var(--fontA);
 	font-style: normal;
 	font-weight: 400;

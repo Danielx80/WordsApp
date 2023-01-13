@@ -7,10 +7,6 @@ export default {
 	component: ImageRectangle
 } as ComponentMeta<typeof ImageRectangle>
 
-const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-	console.log(e);
-
-}
 
 const Template: ComponentStory<typeof ImageRectangle> = (args) => {
 

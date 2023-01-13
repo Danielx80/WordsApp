@@ -1,3 +1,4 @@
+import { string } from 'yup';
 export interface Users {
     data: IUser[];
 }
@@ -14,12 +15,12 @@ export interface IUser {
     auth0_id?: string;
     lastname?: string;
     middlename?: string;
-    second_lastname?:string
+    second_lastname?: string
     phone?: string;
     timezone?: string;
     language?: string;
-    image?:string;
-    is_admin?:boolean;
+    image?: string;
+    is_admin?: boolean;
 }
 
 // Converts JSON strings to/from your types

@@ -25,7 +25,7 @@ export interface User {
     phone?: string;
     timezone?: string;
     language?: string;
-    /* image?:string;*/
+    image?: string;
     is_admin?: boolean;
 }
 
@@ -36,7 +36,7 @@ export interface TableFooterProps<Data> {
     page: number,
     slice: Data[],
     totalItems: number,
-    /* setRowsPerPage:any, */
+    name?: string
     rowsPerPage: number
 }
 

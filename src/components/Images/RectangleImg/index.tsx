@@ -5,8 +5,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 const ImageRectangle = () => {
     const { user, isAuthenticated } = useAuth0();
     return (
-            <div className={styles.containerHeader}>
-                <img role="banner" src="https://media-exp1.licdn.com/dms/image/C5616AQHRqt9MQ6Ymrw/profile-displaybackgroundimage-shrink_350_1400/0/1649781235841?e=1673481600&v=beta&t=iSVI-z5pojQUER90g0YrqKBb3ODsm5gNb5IFOyIMsCQ" alt="BannerImage" className={styles.topImg} />
+        <div className={styles.containerHeader}>
+                
+                <img role="banner" src="https://res.cloudinary.com/dqlk17aue/image/upload/v1668787204/Rectangle_1626_syokab.png"  className={styles.topImg} />
                 <div className={styles.containerAvatar}>
                     {
                         isAuthenticated ?

@@ -6,8 +6,6 @@ export default {
     component: ExampleModalNewUser
 } as ComponentMeta<typeof ExampleModalNewUser>
 
-
-
 const Template: ComponentStory<typeof ExampleModalNewUser> = (args) => {
 
     return <ExampleModalNewUser {...args} />

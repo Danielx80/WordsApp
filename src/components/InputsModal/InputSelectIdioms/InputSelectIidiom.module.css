@@ -108,3 +108,13 @@
 .emailError {
 	outline: 0.2rem solid var(--red500);
 }
+span {
+	margin-left: 1.5rem;
+	color: red;
+	margin-top: -1.5rem;
+	font-family: var(--fontA);
+	font-style: normal;
+	font-weight: 500;
+	align-items: flex-end;
+	font-size: 1.2rem;
+  }

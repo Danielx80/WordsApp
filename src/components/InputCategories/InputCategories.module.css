@@ -1,8 +1,9 @@
-.multiSelect{
+.multiSelect {
 	position: relative;
-	
+
 
 }
+
 .containerSelect {
 	display: flex;
 	flex-direction: row;
@@ -14,11 +15,12 @@
 	border-radius: .4rem;
 
 }
-.containerSelect>p{
+
+.containerSelect>p {
 	font-family: var(--fontA);
-font-style: normal;
-font-weight: 400;
-font-size: 1.4rem;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.4rem;
 }
 
 
@@ -39,16 +41,19 @@ font-size: 1.4rem;
 	font-weight: 600;
 	font-size: 0.96rem;
 }
-.dropdown{
+
+.dropdown {
 	position: absolute;
 	min-height: 2.4rem;
 	background-color: white;
 	border-radius: .4rem;
 	left: 0;
 	top: 4.4rem;
-	z-index: 130;
+	z-index: 100;
+	box-shadow: 0rem 0.1rem 0.2rem -0.1rem rgba(0, 0, 0, 0.1), 0rem 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
 }
-.containerItem{
+
+.containerItem {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -56,8 +61,9 @@ font-size: 1.4rem;
 	padding: 0.8rem 1.6rem;
 	min-width: 22.4rem;
 }
-.firstSelectedItem{
-	overflow:hidden;
+
+.firstSelectedItem {
+	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }

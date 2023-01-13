@@ -13,6 +13,7 @@ export const ExampleModalDeleteUser = ({ title, body }: ExampleModalDeleteUser) 
 				<h4 className={styles.titleH4}>{title}</h4>
 				<p className={styles.textoContent}>{body}</p>
 			</div>
+
 			<div className={styles.linea} />
 			<div className={styles.border2}>
 				<BasicBtn

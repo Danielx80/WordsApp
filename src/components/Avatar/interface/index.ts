@@ -1,8 +1,9 @@
 import { MouseEventHandler } from "react";
+import ReactElement from 'react';
 
 export interface AvatarProps {
     size: 'sm' | 'md' | 'lg' | 'xl',
-    imageSrc?: string,
+    imageSrc?: string | undefined,
     isLoading?: boolean,
     backgroundColor?: string,
     text?: string,
@@ -10,4 +11,6 @@ export interface AvatarProps {
     textName?: string,
     onClick?: MouseEventHandler<HTMLDivElement>,
     numberOfCharacters?: 1 | 2
+    value?: string,
+    name?: string,
 }

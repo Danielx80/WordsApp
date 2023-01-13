@@ -2,7 +2,6 @@
     outline: none;
     border:  1px solid;
     border-radius: 0.4rem;
-    cursor: pointer;
 }
 
 .containerButton{
@@ -12,6 +11,17 @@
     line-height: 2.0rem;
     /* border-radius: 2rem */
 }
+
+
+
+.button:focus {
+	outline: 0.1rem solid var(--celeste500);
+}
+
+.button:active {
+	border: 0.2rem solid var(--celeste400);
+}
+
 .textButton{
     
     font-family: var(--fontA);

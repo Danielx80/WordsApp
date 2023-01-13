@@ -45,8 +45,8 @@ export const ToggleButton = ({ values, onChange, onBlur }: ToggleButtonProps) =>
 }
 
 export default ToggleButton
-// ToggleButton.defaultProps = {
-// 	values:[
-//     'Admin','Editor'
-//    ]
-// }
+ToggleButton.defaultProps = {
+	values:[
+    'Admin','Editor'
+   ]
+}

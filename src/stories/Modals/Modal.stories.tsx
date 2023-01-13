@@ -1,7 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Modal from '../../components/Modal/index';
-import ModalEditUser from '../../components/Modal/ModalEditUser/ModalEditUser';
-import user from '@testing-library/user-event';
 import { ExampleModalNewUser } from '../../components/Modal/ModalExamples/ExampleModalNewUser';
 
 export default {

@@ -2,7 +2,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { MouseEvent } from 'react'
 import TagsUser from '../../components/Infoframe';
 
-
 export default {
     title: 'Tags',
     component: TagsUser
@@ -10,9 +9,7 @@ export default {
 
 const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     console.log(e);
-
 }
-
 
 const Template: ComponentStory<typeof TagsUser> = (args) => {
 
@@ -26,5 +23,4 @@ TagsUserComponent.args = {
     onClick: handleClick,
     backgroundColor: 'var(--gray500)',
     text: 'isabella@bluepixel.mx'
-
 }

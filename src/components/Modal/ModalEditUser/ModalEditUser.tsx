@@ -7,11 +7,11 @@ import { ModalEditProps } from "./interface";
 import InputModal from '../../InputsModal/Inputs';
 import ToggleButton from "../../Button/ToggleButton/ToggleButton";
 import { IUser } from '../../../interface/FetchAllUserResponse';
-import { updateUserData } from '../../../hooks/useUsers';
+import { updateUserData, updateImgData } from '../../../hooks/useUsers';
 import { InputSelectTime } from '../../InputsModal/inputSelect/InputSelect';
 import { InputSelectIdiom } from '../../InputsModal/InputSelectIdioms/InputSelectIdiom';
 import { TableContext } from "../../../context/TableContext";
-import { CreateMessage } from '../../Message/MessageNewUser/index';
+import { InputFile } from '../../InputFile/InputFile';
 
 
 const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps) => {
@@ -21,10 +21,10 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
     birthday: '',
     email: '',
     id: '',
-    image: '',
     is_admin: true,
     language: '',
     lastname: '',
+    // image: '',
     middlename: '',
     name: '',
     phone: '',
@@ -32,6 +32,9 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
   }
 
   const [user, setUser] = useState<IUser>(originalUser ?? initialValue)
+  const [img, setImg] = useState<File>()
+  const [imageUrl, setImageUrl] = useState<any>()
+  const { mutate: ImgMutate } = updateImgData()
   const { setIsOpenModalEditUser } = useContext(TableContext)
   const { mutate } = updateUserData()
 
@@ -41,7 +44,28 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
     )
   }
 
+  function handleImage(e: ChangeEvent<HTMLInputElement>) {
+    if (e.target.files) {
+
+      setImg(e.target.files[0])
+      const fr = new FileReader()
+      fr.onload = () => {
+        setImageUrl(fr.result)
+      }
+      fr.readAsDataURL(e.target.files[0])
+      const data = new FormData()
+      data.append('image', e.target.files[0])
+      ImgMutate({ id: user.id, data })
+    }
+
+  }
+  function getImage() {
+    if (imageUrl) return imageUrl
+    if (user.image) return `http://localhost:4000/api/users/image/${user.image.file_name}`
+  }
+
   function handleSubmit() {
+
     mutate({ ...user, is_admin: user.is_admin })
     setUser(initialValue)
     setIsOpenModalEditUser(false)
@@ -90,17 +114,11 @@ const ModalEditUser = ({ size, textHeader, user: originalUser }: ModalEditProps)
         <div className={styles.containerChangePicture}>
           <Avatar
             size="xl"
-            imageSrc="https://xavierferras.com/wp-content/uploads/2019/02/266-Persona.jpg"
+            text={user.name}
+            imageSrc={getImage()}
           />
           <div className={styles.containerChangePictureBtn}>
-            <BasicBtn
-              size="lg"
-              backgroundColor="white"
-              fontWeight={700}
-              borderColor="var(--neutral300)"
-              colorText="var(--neutral900)"
-              text="Upload New Picture"
-            />
+            <InputFile name="image" onChange={handleImage} />
             <BasicBtn
               size="sm"
               backgroundColor="var(--red400)"

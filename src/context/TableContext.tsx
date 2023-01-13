@@ -7,6 +7,7 @@ interface TableContextProps {
     setCurrentUser:(currentUser?: User) => void
     setDeleteUser:(deleteUser?: User) => void
     setIsOpenModalNewCategory:(isOpenModalNewCategory?: boolean) => void 
+    setShowGlossary:(isShowGlossary?:boolean)=>void
     setIsOpenModalEditUser:(isOpenModalEditUser: boolean) => void
 }
 
